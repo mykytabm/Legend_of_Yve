@@ -1,8 +1,10 @@
 #include "Game.h"
-
+#include "Scene.h"
+#include "GameObject.h"
 
 Game::Game()
 {
+
 }
 
 Game::~Game()
@@ -18,8 +20,16 @@ void Game::initializeWindow()
 void Game::initialize()
 {
 	initializeWindow();
+	///init game loop
+	//init renderer
+	//init scene
+	Scene* StartScreen = new Scene("Start Screen");
 
-	FPSCounter fpsCounter;
+	GameObject* text = new GameObject("welcome text");
+	StartScreen->AddGameObject(text);
+
+
+
 }
 
 void Game::run()

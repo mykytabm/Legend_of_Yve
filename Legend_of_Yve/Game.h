@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "FPSCounter.h"
 class Game
 {
 private:
