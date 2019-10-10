@@ -1,13 +1,18 @@
 #include "ServiceLocator.h"
 #include <type_traits>
 
+ServiceLocator* ServiceLocator::m_instance = nullptr;
 ServiceLocator* ServiceLocator::instance()
 {
 	if (m_instance == nullptr)
 	{
 		m_instance = new ServiceLocator();
 	}
-	return m_instance;
+	return nullptr;
+}
+
+ServiceLocator::ServiceLocator()
+{
 }
 
 ServiceLocator::~ServiceLocator()
