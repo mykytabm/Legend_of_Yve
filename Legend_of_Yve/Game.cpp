@@ -1,7 +1,6 @@
 #include "Game.h"
-#include "Scene.h"
 #include "GameObject.h"
-
+#include "StartScreen.h"
 Game::Game()
 {
 
@@ -23,10 +22,14 @@ void Game::initialize()
 	///init game loop
 	//init renderer
 	//init scene
-	Scene* StartScreen = new Scene("Start Screen");
+
 
 	GameObject* text = new GameObject("welcome text");
-	StartScreen->AddGameObject(text);
+
+	StartScreen* startScreen = new StartScreen("welcome screen");
+
+	startScreen->AddGameObject(text);
+
 
 
 

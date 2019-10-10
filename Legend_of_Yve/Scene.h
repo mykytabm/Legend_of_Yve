@@ -2,17 +2,25 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
+#include <iostream>
 
 class Scene
 {
-private:
-	std::string m_id;
+
+protected:
 	std::vector<GameObject*> m_gameObjects;
+	std::string m_id;
 public:
-	Scene(std::string t_id);
-	~Scene();
-	void update();
-	void render(sf::RenderWindow& t_window);
-	void AddGameObject(GameObject* t_GameObject);
+
+	virtual ~Scene();
+	virtual void initialize() = 0;
+	virtual void update() = 0;
+	virtual void render(sf::RenderWindow& t_window) = 0;
+	inline void AddGameObject(GameObject* t_GameObject)
+	{
+		std::cout << t_GameObject->Name() << " has been added to Scene " << this->m_id << std::endl;
+		m_gameObjects.push_back(t_GameObject);
+	}
+
 };
 
