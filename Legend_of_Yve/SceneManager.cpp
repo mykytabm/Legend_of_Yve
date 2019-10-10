@@ -11,6 +11,7 @@ SceneManager::~SceneManager()
 
 void SceneManager::initialize()
 {
+
 }
 
 void SceneManager::LoadScene(Scene* t_scene)

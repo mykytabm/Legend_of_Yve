@@ -12,6 +12,7 @@ public:
 	sf::RenderWindow* getWindow() { return m_window; }
 	void initializeWindow();
 	void initialize();
+	void ProccessEvents();
 	void run();
 	void exit();
 };

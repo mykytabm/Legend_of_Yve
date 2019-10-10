@@ -1,6 +1,6 @@
 #include "StartScreen.h"
 #include "GameObject.h"
-
+#include "Renderer.h"
 
 
 StartScreen::StartScreen(std::string t_id)
@@ -12,6 +12,7 @@ void StartScreen::initialize()
 {
 	GameObject* text = new GameObject("Text");
 	AddGameObject(text);
+	Renderer* renderer = new Renderer();
 }
 
 
