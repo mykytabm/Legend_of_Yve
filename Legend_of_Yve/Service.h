@@ -1,8 +1,7 @@
 #pragma once
 class Service
 {
-	Service();
-	virtual ~Service() = default;
+public:
 	virtual void initialize() = 0;
 };
 

@@ -1,5 +1,6 @@
 #pragma once
-class GameLoop
+#include "Service.h"
+class GameLoop :public Service
 {
 private:
 	void start();
@@ -10,6 +11,10 @@ public:
 	GameLoop();
 	~GameLoop();
 	void run();
+
+
+	// Inherited via Service
+	virtual void initialize() override;
 
 };
 

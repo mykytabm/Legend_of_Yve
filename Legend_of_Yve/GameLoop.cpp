@@ -1,14 +1,6 @@
 #include "GameLoop.h"
 
 
-GameLoop::GameLoop()
-{
-}
-
-GameLoop::~GameLoop()
-{
-}
-
 
 
 void GameLoop::start()
@@ -21,6 +13,14 @@ void GameLoop::update()
 	//update all components
 }
 
+GameLoop::GameLoop()
+{
+}
+
+GameLoop::~GameLoop()
+{
+}
+
 void GameLoop::run()
 {
 	//while game is running
@@ -29,6 +29,10 @@ void GameLoop::run()
 		//RenderManager()->Render();
 		//ProcessEvents();
 
+}
+
+void GameLoop::initialize()
+{
 }
 
 
