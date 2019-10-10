@@ -11,6 +11,8 @@ public:
 	{
 		if (t_gameObject != nullptr) m_owner = t_gameObject;
 	};
+
+	virtual void update() {};
 	virtual void Register() {};
 };
 

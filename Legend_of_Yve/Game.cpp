@@ -1,7 +1,26 @@
 #include "Game.h"
 #include "GameObject.h"
 #include "StartScreen.h"
-Game::Game() :m_window(nullptr), m_sceneManager(nullptr)
+#include "ServiceLocator.h"
+
+void Game::InitializeServices()
+{
+	m_gameLoop = new GameLoop();
+	m_renderManager = new RenderManager();
+	m_sceneManager = new SceneManager();
+
+	ServiceLocator::instance()->AddService(m_gameLoop);
+	ServiceLocator::instance()->AddService(m_renderManager);
+	ServiceLocator::instance()->AddService(m_sceneManager);
+
+	m_gameLoop->initialize();
+	m_renderManager->initialize();
+	m_sceneManager->initialize();
+
+}
+
+Game::Game() :m_window(nullptr), m_sceneManager(nullptr),
+m_gameLoop(nullptr), m_renderManager(nullptr)
 {
 
 }
@@ -19,17 +38,14 @@ void Game::initializeWindow()
 void Game::initialize()
 {
 	initializeWindow();
-	///init game loop
-	//init render manager
-	m_sceneManager = new SceneManager();
+
+	InitializeServices();
+
+
 
 	StartScreen* startScreen = new StartScreen("welcome screen");
 
 	m_sceneManager->LoadScene(startScreen);
-
-
-
-
 }
 
 void Game::ProccessEvents()
@@ -78,3 +94,4 @@ void Game::exit()
 		m_window->close();
 	}
 }
+

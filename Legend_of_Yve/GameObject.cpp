@@ -34,6 +34,7 @@ void GameObject::AddComponent(Component* t_component)
 	if (ContainsComponent(t_component) == false)
 	{
 		m_components.push_back(*t_component);
+		//register component
 	}
 }
 
