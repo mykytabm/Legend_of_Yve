@@ -12,11 +12,10 @@ protected:
 	std::string m_id;
 public:
 
-	virtual ~Scene();
 	virtual void initialize() = 0;
 	virtual void update() = 0;
 	virtual void render(sf::RenderWindow& t_window) = 0;
-	inline void AddGameObject(GameObject* t_GameObject)
+	inline  void AddGameObject(GameObject* t_GameObject)
 	{
 		std::cout << t_GameObject->Name() << " has been added to Scene " << this->m_id << std::endl;
 		m_gameObjects.push_back(t_GameObject);

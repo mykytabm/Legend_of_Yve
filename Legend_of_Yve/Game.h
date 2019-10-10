@@ -1,10 +1,11 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "SceneManager.h"
 class Game
 {
 private:
 	sf::RenderWindow* m_window;
-
+	SceneManager* m_sceneManager;
 public:
 	Game();
 	~Game();

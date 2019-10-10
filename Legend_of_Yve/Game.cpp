@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "GameObject.h"
 #include "StartScreen.h"
-Game::Game()
+Game::Game() :m_window(nullptr), m_sceneManager(nullptr)
 {
 
 }
@@ -21,14 +21,11 @@ void Game::initialize()
 	initializeWindow();
 	///init game loop
 	//init renderer
-	//init scene
-
-
-	GameObject* text = new GameObject("welcome text");
+	m_sceneManager = new SceneManager();
 
 	StartScreen* startScreen = new StartScreen("welcome screen");
 
-	startScreen->AddGameObject(text);
+	m_sceneManager->LoadScene(startScreen);
 
 
 

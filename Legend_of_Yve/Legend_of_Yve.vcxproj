@@ -163,6 +163,10 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Service.cpp" />
+    <ClCompile Include="ServiceLocator.cpp" />
+    <ClCompile Include="StartScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h" />
@@ -170,6 +174,10 @@
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Service.h" />
+    <ClInclude Include="ServiceLocator.h" />
+    <ClInclude Include="StartScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
