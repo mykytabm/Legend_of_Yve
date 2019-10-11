@@ -12,8 +12,7 @@ ServiceLocator* ServiceLocator::instance()
 }
 
 ServiceLocator::ServiceLocator()
-{
-}
+{}
 
 ServiceLocator::~ServiceLocator()
 {
@@ -21,15 +20,15 @@ ServiceLocator::~ServiceLocator()
 }
 
 template<typename T>
-void ServiceLocator::AddService(T* t_service)
+void ServiceLocator::AddService(T * t_service)
 {
-	m_services.insert(t_service);
+	m_services.push_back(t_service);
 }
 
 template<typename T>
-void ServiceLocator::RemoveService(T* t_service)
+void ServiceLocator::RemoveService(T * t_service)
 {
-	m_services.erase(t_service);
+	//m_services.erase(t_service);
 }
 
 template<typename T>
@@ -42,7 +41,7 @@ T* ServiceLocator::GetService()
 	}
 
 
-	return m_services.find(T);
+	return FindService<T>();
 }
 
 template<typename T>

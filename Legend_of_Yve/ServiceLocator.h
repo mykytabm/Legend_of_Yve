@@ -1,5 +1,5 @@
 #pragma once
-#include <set>
+#include <vector>
 class Service;
 
 class ServiceLocator
@@ -9,7 +9,7 @@ private:
 	ServiceLocator();
 	~ServiceLocator();
 	static ServiceLocator* m_instance;
-	std::set<Service*> m_services;
+	std::vector<Service*> m_services;
 
 public:
 	static ServiceLocator* instance();
