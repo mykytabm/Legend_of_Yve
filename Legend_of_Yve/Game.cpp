@@ -2,28 +2,30 @@
 #include "GameObject.h"
 #include "StartScreen.h"
 #include "ServiceLocator.h"
-
+#include <iostream>
+#include <memory>
 void Game::InitializeServices()
 {
+	m_gameWindow = new sf::RenderWindow(sf::VideoMode(1280, 720), "Legend Of Yve");
+
 	m_gameLoop = new GameLoop();
-	m_renderManager = new RenderManager();
+	m_renderManager = new RenderManager(m_gameWindow);
 	m_sceneManager = new SceneManager();
 
 	ServiceLocator::instance()->AddService(this);
-	//ServiceLocator::instance()->AddService(m_gameLoop);
-	//ServiceLocator::instance()->AddService(m_renderManager);
-	//ServiceLocator::instance()->AddService(m_sceneManager);
+	ServiceLocator::instance()->AddService(m_gameLoop);
+	ServiceLocator::instance()->AddService(m_renderManager);
+	ServiceLocator::instance()->AddService(m_sceneManager);
 
-	/*m_renderManager->initialize();
+	m_renderManager->initialize();
 	m_gameLoop->initialize();
-	m_sceneManager->initialize();*/
+	m_sceneManager->initialize();
 
 }
 
 Game::Game() : m_sceneManager(nullptr),
-m_gameLoop(nullptr), m_renderManager(nullptr), m_gameRunning(false)
+m_gameLoop(nullptr), m_renderManager(nullptr), m_gameRunning(false), m_gameWindow(nullptr)
 {
-
 }
 
 Game::~Game()
@@ -43,14 +45,13 @@ void Game::initialize()
 	StartScreen* startScreen = new StartScreen("welcome screen");
 
 	m_sceneManager->LoadScene(startScreen);
-	m_gameWindowRef = m_renderManager->GameWindow();
+
 }
 
 void Game::ProcessEvents()
 {
-
 	sf::Event event;
-	while (m_gameWindowRef->pollEvent(event))
+	while (m_gameWindow->pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed) {
 			exit();
@@ -66,20 +67,13 @@ void Game::run()
 {
 	m_gameLoop->run(m_gameRunning);
 
-	// GameLoop->run()
-	//   GameLoop->Update();
-	//   RenderManager->Render();
-	//   Game->ProccessEvents();
-	//
-	//
-
 }
 
 void Game::exit()
 {
-	if (m_gameWindowRef->isOpen()) {
+	if (m_gameWindow->isOpen()) {
 		m_gameRunning = false;
-		m_gameWindowRef->close();
+		m_gameWindow->close();
 	}
 }
 

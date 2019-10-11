@@ -7,11 +7,12 @@ class ImageComponent;
 class RenderManager : public Service
 {
 private:
-	sf::RenderWindow* m_gameWindow;
+	sf::RenderWindow* m_gameWindowRef;
 	std::vector<ImageComponent>* m_renderComponents;
 public:
-	sf::RenderWindow* GameWindow() const { return m_gameWindow; };
+	RenderManager(sf::RenderWindow* t_window);
 	RenderManager();
+	void Window(sf::RenderWindow& window);
 	void render();
 	virtual void initialize() override;
 };

@@ -14,12 +14,13 @@ private:
 	RenderManager* m_renderManager;
 	void InitializeServices();
 	bool m_gameRunning;
-	sf::RenderWindow* m_gameWindowRef;
+
+	sf::RenderWindow* m_gameWindow;
 
 public:
 	Game();
 	~Game();
-	bool& GameRunning()  { return m_gameRunning; };
+	bool& GameRunning() { return m_gameRunning; };
 	void ProcessEvents();
 	void run();
 	void exit();

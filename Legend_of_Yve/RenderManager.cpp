@@ -3,25 +3,34 @@
 #include <iostream>
 
 
-RenderManager::RenderManager() :m_renderComponents(nullptr), m_gameWindow(nullptr)
+RenderManager::RenderManager(sf::RenderWindow* t_window)
+	:m_renderComponents(new std::vector<ImageComponent>(0)), m_gameWindowRef(t_window)
 {
+}
+
+RenderManager::RenderManager() : m_gameWindowRef(nullptr), m_renderComponents(new std::vector<ImageComponent>(0))
+{
+}
+
+void RenderManager::Window(sf::RenderWindow& window)
+{
+	m_gameWindowRef = &window;
 }
 
 void RenderManager::render()
 {
 	std::cout << "RENDER running" << std::endl;
 
-	m_gameWindow->clear();
+	//m_gameWindowRef->clear();
 
-	for (int i = 0; i < m_renderComponents->size(); ++i)
-	{
-		m_renderComponents->at(i).render(*m_gameWindow);
-	}
+	//for (int i = 0; i < m_renderComponents->size(); ++i)
+	//{
+	//	m_renderComponents->at(i).render(*m_gameWindowRef);
+	//}
 
-	m_gameWindow->display();
+	//m_gameWindowRef->display();
 }
 
 void RenderManager::initialize()
 {
-	m_gameWindow = new sf::RenderWindow(sf::VideoMode(1280, 720), "Legend Of Yve");
 }
