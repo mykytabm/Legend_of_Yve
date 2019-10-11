@@ -34,7 +34,7 @@ void GameLoop::run(bool& t_gameRunning)
 
 void GameLoop::initialize()
 {
-	ServiceLocator::instance()->GetService<RenderManager>();
+	m_renderManager = ServiceLocator::instance()->GetService<RenderManager>();
 	m_game = ServiceLocator::instance()->GetService<Game>();
 }
 

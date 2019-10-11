@@ -18,6 +18,7 @@ private:
 	sf::RenderWindow* m_gameWindow;
 
 public:
+	sf::RenderWindow* Window() { return m_gameWindow; };
 	Game();
 	~Game();
 	bool& GameRunning() { return m_gameRunning; };

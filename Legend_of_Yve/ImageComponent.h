@@ -8,6 +8,7 @@ private:
 
 public:
 	void render(sf::Window& t_window);
-
+	void update() override;
+	void Register() override;
 };
 

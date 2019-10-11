@@ -12,7 +12,7 @@ private:
 public:
 	RenderManager(sf::RenderWindow* t_window);
 	RenderManager();
-	void Window(sf::RenderWindow& window);
+	void Window(sf::RenderWindow* window);
 	void render();
 	virtual void initialize() override;
 };
