@@ -161,7 +161,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="ImageComponent.cpp" />
+    <ClCompile Include="SpriteDrawableComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -175,7 +175,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="ImageComponent.h" />
+    <ClInclude Include="SpriteDrawableComponent.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />

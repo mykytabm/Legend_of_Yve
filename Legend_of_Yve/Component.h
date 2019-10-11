@@ -1,5 +1,7 @@
 #pragma once
 #include "GameObject.h"
+#include "RenderManager.h"
+#include "GameLoop.h"
 
 class Component
 {
@@ -13,6 +15,6 @@ public:
 	};
 
 	virtual void update() {};
-	virtual void Register() {};
+	virtual void Register();
 };
 

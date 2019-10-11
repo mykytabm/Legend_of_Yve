@@ -10,7 +10,7 @@ class GameLoop :public Service
 {
 private:
 
-	std::vector<Component>* m_components;
+	std::vector<Component*> m_components;
 	RenderManager* m_renderManager;
 	Game* m_game;
 	void update();
@@ -20,10 +20,11 @@ public:
 	GameLoop();
 	~GameLoop();
 	void run(bool& t_gameRunning);
-
+	void Register(Component* t_component);
 
 	// Inherited via Service
 	virtual void initialize() override;
+
 
 };
 

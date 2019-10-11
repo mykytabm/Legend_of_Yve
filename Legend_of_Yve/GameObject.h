@@ -8,12 +8,12 @@ class GameObject
 
 private:
 	std::string m_name;
-	std::vector<Component> m_components;
+	std::vector<Component*> m_components;
 public:
 
 	GameObject(std::string t_name);
 	~GameObject();
-
+	std::vector<Component*> Components() { return m_components; };
 	std::string Name() const { return  m_name; };
 
 	template <typename T>

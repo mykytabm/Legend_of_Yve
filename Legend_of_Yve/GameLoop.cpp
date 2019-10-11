@@ -6,14 +6,13 @@
 
 void GameLoop::update()
 {
-	std::cout << "UPDATE running" << std::endl;
-	for (int i = 0; i < m_components->size(); ++i)
+	for (int i = 0; i < m_components.size(); ++i)
 	{
-		m_components->at(i).update();
+		m_components[i]->update();
 	}
 }
 
-GameLoop::GameLoop() :m_components(new std::vector<Component>(0)), m_game(nullptr)
+GameLoop::GameLoop() :m_components(std::vector<Component*>(0)), m_game(nullptr)
 {
 }
 
@@ -30,6 +29,11 @@ void GameLoop::run(bool& t_gameRunning)
 		m_renderManager->render();
 	}
 
+}
+
+void GameLoop::Register(Component* t_component)
+{
+	m_components.push_back(t_component);
 }
 
 void GameLoop::initialize()

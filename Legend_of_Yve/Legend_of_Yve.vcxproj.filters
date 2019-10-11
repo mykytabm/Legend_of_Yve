@@ -48,7 +48,7 @@
     <ClCompile Include="RenderManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ImageComponent.cpp">
+    <ClCompile Include="SpriteDrawableComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,7 +83,7 @@
     <ClInclude Include="RenderManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ImageComponent.h">
+    <ClInclude Include="SpriteDrawableComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
