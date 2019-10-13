@@ -6,6 +6,11 @@
 
 
 
+void GameObject::Start()
+{
+	
+}
+
 GameObject::GameObject(std::string t_name) : m_name(t_name)
 {
 
@@ -13,6 +18,19 @@ GameObject::GameObject(std::string t_name) : m_name(t_name)
 
 GameObject::~GameObject()
 {
+	if (m_isActive)
+	{
+		for (int j = 0; j < m_children.size(); ++j)
+		{
+			{
+				m_children[j].Start();
+			}
+		}
+		for (int i = 0; i < m_components.size(); ++i)
+		{
+			m_components[i]->Start();
+		}
+	}
 }
 
 

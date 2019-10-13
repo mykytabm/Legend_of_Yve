@@ -12,8 +12,9 @@ public:
 	{
 		if (t_gameObject != nullptr) m_owner = t_gameObject;
 	};
-
-	virtual ~Component() { };
+	
+	virtual ~Component() {};
+	virtual void Start() {};
 	virtual void update() {};
 	virtual void Register(GameLoop* t_gameLoop, RenderManager* t_renderManager);
 };

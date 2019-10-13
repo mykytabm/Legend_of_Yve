@@ -4,7 +4,7 @@ class Button :
 	public UIElement
 {
 
-	Button() {};
+	Button();
 	~Button();
 };
 

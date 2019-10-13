@@ -36,7 +36,9 @@ void SceneManager::LoadScene(Scene* t_scene)
 	}
 	m_currentScene = t_scene;
 	m_currentScene->initialize();
+	m_currentScene->Start();
 	RegisterGameObjects(t_scene);
 }
+
 
 
