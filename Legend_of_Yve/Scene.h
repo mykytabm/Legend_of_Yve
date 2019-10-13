@@ -9,6 +9,7 @@ class Scene
 
 protected:
 	std::vector<GameObject*> m_gameObjects;
+	std::vector<GameObject*> m_inactiveGameObjects;
 	std::string m_id;
 public:
 
@@ -17,6 +18,7 @@ public:
 	virtual void render(sf::RenderWindow& t_window) = 0;
 
 	std::vector<GameObject*> const GameObjects() { return m_gameObjects; };
+	std::vector<GameObject*> const InactiveGameObjects() { return m_inactiveGameObjects; };
 	void AddGameObject(GameObject* t_GameObject)
 	{
 		std::cout << t_GameObject->Name() << " has been added to Scene " << this->m_id << std::endl;
@@ -24,7 +26,6 @@ public:
 	}
 	void RemoveGameObject(GameObject* t_gameObject)
 	{
-
 	}
 
 };

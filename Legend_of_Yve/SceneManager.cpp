@@ -1,8 +1,8 @@
 #include "SceneManager.h"
 #include "Component.h"
 #include "ServiceLocator.h"
-class Gameloop;
-class RenderManager;
+#include "RenderManager.h"
+#include "GameLoop.h"
 SceneManager::SceneManager() :m_currentScene(nullptr)
 {
 
@@ -19,14 +19,12 @@ void SceneManager::initialize()
 
 void SceneManager::RegisterGameObjects(Scene* t_scene)
 {
-
+	RenderManager* renderManagerRef = ServiceLocator::instance()->GetService<RenderManager>();
+	GameLoop* gameLoopRef = ServiceLocator::instance()->GetService<GameLoop>();
 
 	for (int i = 0; i < t_scene->GameObjects().size(); ++i)
 	{
-		for (int j = 0; j < t_scene->GameObjects()[i]->Components().size(); ++j)
-		{
-			t_scene->GameObjects()[i]->Components()[j]->Register();
-		}
+		t_scene->GameObjects()[i]->RegisterComponents(gameLoopRef, renderManagerRef);
 	}
 }
 

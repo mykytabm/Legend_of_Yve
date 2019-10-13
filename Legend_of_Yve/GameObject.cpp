@@ -38,6 +38,24 @@ void GameObject::AddComponent(Component* t_component)
 	}
 }
 
+void GameObject::RegisterComponents(GameLoop* t_gameLoop, RenderManager* t_renderManager)
+{
+	if (m_isActive)
+	{
+		for (int j = 0; j < m_children.size(); ++j)
+		{
+			{
+				m_children[j].RegisterComponents(t_gameLoop, t_renderManager);
+			}
+		}
+		for (int i = 0; i < m_components.size(); ++i)
+		{
+			m_components[i]->Register(t_gameLoop, t_renderManager);
+		}
+	}
+
+}
+
 
 
 bool GameObject::ContainsComponent(Component* t_component)

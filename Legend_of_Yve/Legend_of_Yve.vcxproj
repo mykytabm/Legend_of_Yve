@@ -157,11 +157,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="SpriteDrawableComponent.cpp" />
+    <ClCompile Include="SpriteComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -169,19 +171,23 @@
     <ClCompile Include="Service.cpp" />
     <ClCompile Include="ServiceLocator.cpp" />
     <ClCompile Include="StartScreen.cpp" />
+    <ClCompile Include="UIElement.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="Canvas.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="SpriteDrawableComponent.h" />
+    <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Service.h" />
     <ClInclude Include="ServiceLocator.h" />
     <ClInclude Include="StartScreen.h" />
+    <ClInclude Include="UIElement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

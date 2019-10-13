@@ -1,7 +1,7 @@
 #include "Component.h"
-#include "ServiceLocator.h"
 #include "GameLoop.h"
-void Component::Register()
+
+void Component::Register(GameLoop* t_gameLoop, RenderManager* t_renderManager)
 {
-	ServiceLocator::instance()->GetService<GameLoop>()->Register(this);
+	t_gameLoop->Register(this);
 }

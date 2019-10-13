@@ -18,8 +18,9 @@ ServiceLocator* ServiceLocator::instance()
 ServiceLocator::ServiceLocator() = default;
 
 ServiceLocator::~ServiceLocator()
+
 {
-	m_services.clear();
+	delete m_instance;
 }
 
 

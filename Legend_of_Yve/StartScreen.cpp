@@ -1,6 +1,6 @@
 #include "StartScreen.h"
 #include "GameObject.h"
-#include "SpriteDrawableComponent.h"
+#include "SpriteComponent.h"
 
 StartScreen::StartScreen(std::string t_id)
 {
@@ -10,7 +10,7 @@ StartScreen::StartScreen(std::string t_id)
 void StartScreen::initialize()
 {
 	GameObject* text = new GameObject("Text");
-	text->AddComponent(new SpriteDrawableComponent());
+	text->AddComponent(new SpriteComponent());
 	AddGameObject(text);
 }
 
@@ -19,14 +19,17 @@ void StartScreen::initialize()
 
 StartScreen::~StartScreen()
 {
+
 }
 
 void StartScreen::update()
 {
+
 }
 
 void StartScreen::render(sf::RenderWindow& t_window)
 {
+
 }
 
 
