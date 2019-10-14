@@ -12,7 +12,7 @@ void GameLoop::update()
 	}
 }
 
-GameLoop::GameLoop() :m_components(std::vector<Component*>(0)), m_game(nullptr)
+GameLoop::GameLoop()
 {
 }
 
@@ -20,7 +20,7 @@ GameLoop::~GameLoop()
 {
 }
 
-void GameLoop::run(bool& t_gameRunning)
+ void GameLoop::run( bool& t_gameRunning)
 {
 	while (t_gameRunning)
 	{

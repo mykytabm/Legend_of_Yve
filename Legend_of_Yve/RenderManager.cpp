@@ -5,7 +5,7 @@
 #include "Game.h"
 
 
-bool RenderManager::ComponentExists(SpriteComponent* t_drawable)
+bool RenderManager::ComponentExists(SpriteComponent* t_drawable) const
 {
 	for (int i = 0; i < m_renderComponents.size(); ++i)
 	{

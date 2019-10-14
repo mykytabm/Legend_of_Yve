@@ -6,6 +6,7 @@
 class Component;
 class RenderManager;
 class Game;
+
 class GameLoop :public Service
 {
 private:

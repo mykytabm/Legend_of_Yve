@@ -3,13 +3,12 @@
 
 int main()
 {
-	Game* game = new Game();
 
-	game->initialize();
+	Game game;
 
-	game->run();
-
-	game->exit();
+	game.initialize();
+	game.run();
+	game.exit();
 
 	return 0;
 }

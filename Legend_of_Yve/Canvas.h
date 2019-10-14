@@ -9,7 +9,7 @@ private:
 
 public:
 	Canvas();
-	Canvas(std::string t_name);
+	Canvas( const std::string t_name);
 	~Canvas();
 };
 

@@ -12,9 +12,9 @@ private:
 public:
 
 	sf::Vector2f size() const { return m_size; };
-	void SetSize(const sf::Vector2f t_size) { m_size = t_size; };
+	void SetSize(sf::Vector2f t_size) { m_size = t_size; };
 	sf::Vector2f position() const { return m_position; };
-	void SetPosition(const sf::Vector2f t_position) { m_position = t_position; };
+	void SetPosition(sf::Vector2f t_position) { m_position = t_position; };
 
 	Collider();
 	~Collider();
@@ -22,7 +22,7 @@ public:
 	void Start() override;
 	void update() override;
 
-	
+
 
 
 };

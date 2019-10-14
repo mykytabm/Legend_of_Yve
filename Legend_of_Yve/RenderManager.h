@@ -10,7 +10,7 @@ private:
 	sf::RenderWindow* m_gameWindowRef;
 	std::vector<SpriteComponent*> m_renderComponents;
 public:
-	bool ComponentExists(SpriteComponent* t_drawable);
+	bool ComponentExists(SpriteComponent* t_drawable) const;
 	void Register(SpriteComponent* t_drawable);
 	void UnRegister(SpriteComponent* t_drawable);
 	RenderManager(sf::RenderWindow* t_window);

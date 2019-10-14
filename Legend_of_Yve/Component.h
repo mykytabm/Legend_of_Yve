@@ -10,14 +10,16 @@ private:
 	GameObject* m_owner;
 
 public:
-	void SetGameObject(GameObject* t_gameObject)
-	{
-		if (t_gameObject != nullptr) m_owner = t_gameObject;
-	};
+	void SetGameObject(GameObject* t_gameObject);
 
 	virtual ~Component() {};
 	virtual void Start() {};
 	virtual void update() {};
 	virtual void Register(GameLoop* t_gameLoop, RenderManager* t_renderManager);
+};
+
+inline void Component::SetGameObject(GameObject* t_gameObject)
+{
+	if (t_gameObject != nullptr) m_owner = t_gameObject;
 };
 

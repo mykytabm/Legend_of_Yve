@@ -15,8 +15,7 @@ public:
 	SpriteComponent();
 	~SpriteComponent();
 
-	void render(sf::RenderWindow& t_window);
-	//void update() override;
+	void render(sf::RenderWindow& t_window) const;
 	void Register(GameLoop* t_gameLoop, RenderManager* t_renderManager) override;
 };
 

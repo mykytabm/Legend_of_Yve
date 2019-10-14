@@ -5,7 +5,7 @@ class SceneManager : public Service
 {
 private:
 	Scene* m_currentScene;
-	void RegisterGameObjects(Scene* t_scene);
+	void RegisterGameObjects(Scene* t_scene) const;
 public:
 	void LoadScene(Scene* t_scene);
 	SceneManager();

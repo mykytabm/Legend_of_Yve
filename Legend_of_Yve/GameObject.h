@@ -17,9 +17,9 @@ protected:
 public:
 	GameObject() {};
 	virtual void Start();
-	GameObject(std::string t_name);
+	GameObject(const std::string t_name);
 	virtual ~GameObject();
-	bool Active() { return m_isActive; };
+	bool Active() const { return m_isActive; };
 	std::vector<Component*> Components() { return m_components; };
 	std::string Name() const { return  m_name; };
 
@@ -27,20 +27,20 @@ public:
 	void AddComponent();
 
 	template<typename T>
-	bool ContainsComponent(T t_type);
+	bool ContainsComponent(T t_type) const;
 
 	template <typename T>
-	T* GetComponent();
+	T* GetComponent() const;
 
 	void AddComponent(Component* t_component);
 	void RegisterComponents(GameLoop* t_gameLoop, RenderManager* t_renderManager);
-	bool ContainsComponent(Component* t_component);
+	bool ContainsComponent(Component* t_component) const;
 
 };
 
 
 template<typename T>
-T* GameObject::GetComponent()
+T* GameObject::GetComponent() const
 {
 	for (auto& component : m_components)
 	{
@@ -54,7 +54,7 @@ T* GameObject::GetComponent()
 }
 
 template<typename T>
-bool GameObject::ContainsComponent(T t_type)
+bool GameObject::ContainsComponent(T t_type) const
 {
 	for (auto component : m_components)
 	{

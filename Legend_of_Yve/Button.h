@@ -11,7 +11,7 @@ private:
 
 
 public:
-	void SetSprite(std::string t_imagePath) { GetComponent<SpriteComponent>()->SetSprite(t_imagePath); };
+	void SetSprite(const std::string t_imagePath)  { GetComponent<SpriteComponent>()->SetSprite(t_imagePath); };
 	sf::Sprite* GetSprite() { return GetComponent<SpriteComponent>()->Sprite(); };
 	Button();
 	~Button();

@@ -11,7 +11,7 @@ SpriteComponent::~SpriteComponent()
 {
 
 }
-void SpriteComponent::render(sf::RenderWindow& t_window)
+void SpriteComponent::render(sf::RenderWindow& t_window) const
 {
 	t_window.draw(*m_sprite);
 }

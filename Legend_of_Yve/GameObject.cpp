@@ -76,7 +76,7 @@ void GameObject::RegisterComponents(GameLoop* t_gameLoop, RenderManager* t_rende
 
 
 
-bool GameObject::ContainsComponent(Component* t_component)
+bool GameObject::ContainsComponent(Component* t_component) const
 {
 	for (auto component : m_components)
 	{
