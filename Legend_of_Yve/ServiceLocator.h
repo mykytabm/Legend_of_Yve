@@ -24,7 +24,7 @@ private:
 public:
 	static ServiceLocator* instance();
 	template<typename T>
-	void AddService(T* t_service);
+	void AddService(T& t_service);
 	template<typename T>
 	T* GetService();
 	template<typename T>
@@ -34,9 +34,9 @@ public:
 };
 
 template<typename T>
-void ServiceLocator::AddService(T* t_service)
+void ServiceLocator::AddService(T& t_service)
 {
-	m_services.push_back(static_cast<Service*>(t_service));
+	m_services.push_back(dynamic_cast<Service*>(&t_service));
 }
 
 
@@ -46,12 +46,7 @@ template<typename T>
 T* ServiceLocator::GetService()
 {
 	T* service = FindService<T>();
-	if (service != nullptr)
-	{
-		return service;
-	}
-
-	return nullptr;
+	return service;
 
 }
 
@@ -62,9 +57,11 @@ T* ServiceLocator::FindService()
 	for (int i = 0; i < m_services.size(); ++i)
 	{
 		T* cast_service = dynamic_cast<T*>(m_services[i]);
-		if (cast_service != nullptr) return cast_service;
+		if (cast_service != nullptr)
+		{
+			return cast_service;
+		}
 	}
-	return nullptr;
 }
 
 

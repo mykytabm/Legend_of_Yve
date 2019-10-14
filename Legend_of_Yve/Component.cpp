@@ -1,7 +1,7 @@
 #include "Component.h"
 #include "GameLoop.h"
 
-void Component::Register(GameLoop* t_gameLoop, RenderManager* t_renderManager)
+void Component::Register(GameLoop& t_gameLoop, RenderManager& t_renderManager)
 {
-	t_gameLoop->Register(this);
+	t_gameLoop.Register(this);
 }

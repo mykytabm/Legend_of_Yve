@@ -7,10 +7,10 @@
 void Game::InitializeServices()
 {
 
-	ServiceLocator::instance()->AddService(this);
-	ServiceLocator::instance()->AddService(&m_gameLoop);
-	ServiceLocator::instance()->AddService(&m_renderManager);
-	ServiceLocator::instance()->AddService(&m_sceneManager);
+	ServiceLocator::instance()->AddService(*this);
+	ServiceLocator::instance()->AddService(m_gameLoop);
+	ServiceLocator::instance()->AddService(m_renderManager);
+	ServiceLocator::instance()->AddService(m_sceneManager);
 
 	m_renderManager.initialize();
 	m_gameLoop.initialize();
@@ -59,7 +59,7 @@ void Game::ProcessEvents()
 
 void Game::run()
 {
-	m_gameLoop.run(m_gameRunning);
+	m_gameLoop.run(m_gameRunning, *this, m_renderManager);
 
 }
 

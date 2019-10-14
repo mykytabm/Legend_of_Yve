@@ -16,7 +16,7 @@ public:
 	sf::Vector2f position() const { return m_position; };
 	void SetPosition(sf::Vector2f t_position) { m_position = t_position; };
 
-	Collider();
+	Collider() {};	
 	~Collider();
 
 	void Start() override;

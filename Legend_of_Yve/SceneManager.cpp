@@ -19,8 +19,8 @@ void SceneManager::initialize()
 
 void SceneManager::RegisterGameObjects(Scene* t_scene) const
 {
-	RenderManager* renderManagerRef = ServiceLocator::instance()->GetService<RenderManager>();
-	GameLoop* gameLoopRef = ServiceLocator::instance()->GetService<GameLoop>();
+	RenderManager& renderManagerRef = *ServiceLocator::instance()->GetService<RenderManager>();
+	GameLoop& gameLoopRef = *ServiceLocator::instance()->GetService<GameLoop>();
 
 	for (int i = 0; i < t_scene->GameObjects().size(); ++i)
 	{

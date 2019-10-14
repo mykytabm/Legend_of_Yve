@@ -20,13 +20,13 @@ GameLoop::~GameLoop()
 {
 }
 
- void GameLoop::run( bool& t_gameRunning)
+void GameLoop::run(bool& t_gameRunning, Game& t_game, RenderManager& t_renderManager)
 {
-	while (t_gameRunning)
+	while (t_game.GameRunning())
 	{
-		m_game->ProcessEvents();
+		t_game.ProcessEvents();
 		this->update();
-		m_renderManager->render();
+		t_renderManager.render();
 	}
 
 }
@@ -38,8 +38,7 @@ void GameLoop::Register(Component* t_component)
 
 void GameLoop::initialize()
 {
-	m_renderManager = ServiceLocator::instance()->GetService<RenderManager>();
-	m_game = ServiceLocator::instance()->GetService<Game>();
+
 }
 
 

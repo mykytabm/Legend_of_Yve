@@ -14,6 +14,7 @@ protected:
 	std::vector<Component*> m_components;
 	std::vector<GameObject> m_children;
 	std::string m_name;
+
 public:
 	GameObject() {};
 	virtual void Start();
@@ -30,27 +31,28 @@ public:
 	bool ContainsComponent(T t_type) const;
 
 	template <typename T>
-	T* GetComponent() const;
+	T& GetComponent() const;
 
 	void AddComponent(Component* t_component);
-	void RegisterComponents(GameLoop* t_gameLoop, RenderManager* t_renderManager);
+	void RegisterComponents(GameLoop& t_gameLoop, RenderManager& t_renderManager);
 	bool ContainsComponent(Component* t_component) const;
 
 };
 
 
 template<typename T>
-T* GameObject::GetComponent() const
+T& GameObject::GetComponent() const
 {
 	for (auto& component : m_components)
 	{
+
 		T* castComponent = dynamic_cast<T*>(component);
 		if (castComponent != nullptr)
 		{
-			return castComponent;
+
+			return *castComponent;
 		}
 	}
-	return nullptr;
 }
 
 template<typename T>

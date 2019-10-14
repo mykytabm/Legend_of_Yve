@@ -56,7 +56,7 @@ void GameObject::AddComponent(Component* t_component)
 	}
 }
 
-void GameObject::RegisterComponents(GameLoop* t_gameLoop, RenderManager* t_renderManager)
+void GameObject::RegisterComponents(GameLoop& t_gameLoop, RenderManager& t_renderManager)
 {
 	if (m_isActive)
 	{
