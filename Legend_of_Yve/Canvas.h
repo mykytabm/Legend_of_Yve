@@ -8,7 +8,7 @@ class Canvas : public UIElement
 private:
 
 public:
-	Canvas() {};
+	Canvas();
 	Canvas(std::string t_name);
 	~Canvas();
 };

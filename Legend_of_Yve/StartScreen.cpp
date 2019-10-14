@@ -1,7 +1,6 @@
 #include "StartScreen.h"
 #include "GameObject.h"
-#include "SpriteComponent.h"
-
+#include "Button.h"
 StartScreen::StartScreen(std::string t_id)
 {
 	m_id = t_id;
@@ -9,9 +8,9 @@ StartScreen::StartScreen(std::string t_id)
 
 void StartScreen::initialize()
 {
-	GameObject* text = new GameObject("Text");
-	text->AddComponent(new SpriteComponent());
-	AddGameObject(text);
+	Button* spriteBtn = new Button();
+	this->AddGameObject(spriteBtn);
+	spriteBtn->SetSprite("../Assets/Sprite_logo.jpg");
 }
 
 

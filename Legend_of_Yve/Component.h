@@ -1,7 +1,9 @@
 #pragma once
 #include "GameObject.h"
+
 class GameLoop;
 class RenderManager;
+
 class Component
 {
 private:
@@ -12,7 +14,7 @@ public:
 	{
 		if (t_gameObject != nullptr) m_owner = t_gameObject;
 	};
-	
+
 	virtual ~Component() {};
 	virtual void Start() {};
 	virtual void update() {};

@@ -2,9 +2,10 @@
 #include "RenderManager.h"
 #include "ServiceLocator.h"
 
-SpriteComponent::SpriteComponent()
+SpriteComponent::SpriteComponent() : m_sprite(nullptr), m_texture(nullptr)
 {
-	
+	m_sprite = new sf::Sprite();
+	m_texture = new sf::Texture();
 }
 SpriteComponent::~SpriteComponent()
 {
@@ -15,10 +16,6 @@ void SpriteComponent::render(sf::RenderWindow& t_window)
 	t_window.draw(*m_sprite);
 }
 
-void SpriteComponent::update()
-{
-
-}
 
 void SpriteComponent::Register(GameLoop* t_gameLoop, RenderManager* t_renderManager)
 {

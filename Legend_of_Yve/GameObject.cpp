@@ -8,7 +8,7 @@
 
 void GameObject::Start()
 {
-	
+
 }
 
 GameObject::GameObject(std::string t_name) : m_name(t_name)
@@ -81,19 +81,6 @@ bool GameObject::ContainsComponent(Component* t_component)
 	for (auto component : m_components)
 	{
 		if (typeid(t_component) == typeid(component))
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
-template<typename T>
-bool GameObject::ContainsComponent(T t_type)
-{
-	for (auto component : m_components)
-	{
-		if (t_type == typeid(component))
 		{
 			return true;
 		}
