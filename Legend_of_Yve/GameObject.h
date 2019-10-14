@@ -16,7 +16,7 @@ protected:
 	std::string m_name;
 public:
 	GameObject() {};
-	void Start();
+	virtual void Start();
 	GameObject(std::string t_name);
 	virtual ~GameObject();
 	bool Active() { return m_isActive; };

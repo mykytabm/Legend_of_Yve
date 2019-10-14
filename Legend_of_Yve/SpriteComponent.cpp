@@ -4,7 +4,7 @@
 
 SpriteComponent::SpriteComponent()
 {
-	m_rectangle = sf::RectangleShape::RectangleShape(sf::Vector2f(100, 100));
+	
 }
 SpriteComponent::~SpriteComponent()
 {
@@ -12,7 +12,7 @@ SpriteComponent::~SpriteComponent()
 }
 void SpriteComponent::render(sf::RenderWindow& t_window)
 {
-	t_window.draw(m_rectangle);
+	t_window.draw(*m_sprite);
 }
 
 void SpriteComponent::update()

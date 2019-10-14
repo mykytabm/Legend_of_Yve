@@ -12,5 +12,5 @@ public:
 	UIElement() {};
 	UIElement(std::string t_name);
 	~UIElement();
-};
+}
 
