@@ -18,7 +18,6 @@ public:
 	virtual void update() = 0;
 	virtual void SetupGameObjects() = 0;
 	virtual ~Scene() {};
-	virtual void render(sf::RenderWindow& t_window) = 0;
 	virtual void Start() { for (int i = 0; i < _gameObjects.size(); ++i) { _gameObjects[i]->Start(); _gameObjects[i]->StartComponents(); } };
 
 	std::vector<GameObject*> const GameObjects() { return _gameObjects; };

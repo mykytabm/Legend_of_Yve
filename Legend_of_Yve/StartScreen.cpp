@@ -42,10 +42,6 @@ void StartScreen::update()
 
 }
 
-void StartScreen::render(sf::RenderWindow& t_window)
-{
-
-}
 
 
 

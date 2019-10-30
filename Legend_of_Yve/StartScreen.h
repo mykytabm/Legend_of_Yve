@@ -11,7 +11,6 @@ public:
 
 	// Inherited via Scene
 	virtual void update();
-	virtual void render(sf::RenderWindow& t_window);
 	virtual void initialize();
 	virtual void SetupGameObjects();
 };
