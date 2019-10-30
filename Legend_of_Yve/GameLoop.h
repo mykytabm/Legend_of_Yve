@@ -11,7 +11,7 @@ class GameLoop :public Service
 {
 private:
 
-	std::vector<Component*> m_components;
+	std::vector<Component*> _components;
 
 	void update();
 

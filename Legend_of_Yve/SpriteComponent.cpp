@@ -12,7 +12,7 @@ SpriteComponent::~SpriteComponent()
 }
 void SpriteComponent::render(sf::RenderWindow& t_window) const
 {
-	t_window.draw(m_sprite);
+	t_window.draw(_sprite);
 }
 
 

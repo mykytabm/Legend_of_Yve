@@ -1,16 +1,16 @@
 #include "ServiceLocator.h"
 #include "Service.h"
 
-ServiceLocator* ServiceLocator::m_instance = nullptr;
+ServiceLocator* ServiceLocator::_instance = nullptr;
 
 ServiceLocator* ServiceLocator::instance()
 {
-	if (m_instance == nullptr)
+	if (_instance == nullptr)
 	{
-		m_instance = new ServiceLocator();
+		_instance = new ServiceLocator();
 	}
 
-	return m_instance;
+	return _instance;
 }
 
 
@@ -20,7 +20,7 @@ ServiceLocator::ServiceLocator() = default;
 ServiceLocator::~ServiceLocator()
 
 {
-	delete m_instance;
+	delete _instance;
 }
 
 

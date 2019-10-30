@@ -2,10 +2,10 @@
 #include "Collider.h"
 Button::Button()
 {
-	m_spriteComponent = SpriteComponent();
-	m_collider = Collider();
-	this->m_components.push_back(&m_spriteComponent);
-	this->m_components.push_back(&m_collider);
+	_spriteComponent = SpriteComponent();
+	_collider = Collider();
+	this->_components.push_back(&_spriteComponent);
+	this->_components.push_back(&_collider);
 }
 
 Button::~Button()
@@ -14,4 +14,5 @@ Button::~Button()
 
 void Button::Start()
 {
+
 }

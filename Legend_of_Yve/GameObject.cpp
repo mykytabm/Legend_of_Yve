@@ -11,24 +11,28 @@ void GameObject::Start()
 
 }
 
-GameObject::GameObject(std::string t_name) : m_name(t_name)
+void GameObject::Update()
+{
+}
+
+GameObject::GameObject(std::string t_name) : _name(t_name)
 {
 
 }
 
 GameObject::~GameObject()
 {
-	if (m_isActive)
+	if (_isActive)
 	{
-		for (int j = 0; j < m_children.size(); ++j)
+		for (int j = 0; j < _children.size(); ++j)
 		{
 			{
-				m_children[j].Start();
+				_children[j].Start();
 			}
 		}
-		for (int i = 0; i < m_components.size(); ++i)
+		for (int i = 0; i < _components.size(); ++i)
 		{
-			m_components[i]->Start();
+			_components[i]->Start();
 		}
 	}
 }
@@ -42,7 +46,7 @@ void GameObject::AddComponent()
 	{
 		auto* component = new T();
 		static_cast<Component>(component).SetGameObject(this);
-		m_components.push_back(component);
+		_components.push_back(component);
 	}
 }
 
@@ -51,24 +55,24 @@ void GameObject::AddComponent(Component* t_component)
 {
 	if (ContainsComponent(t_component) == false)
 	{
-		m_components.push_back(t_component);
+		_components.push_back(t_component);
 		//register component
 	}
 }
 
 void GameObject::RegisterComponents(GameLoop& t_gameLoop, RenderManager& t_renderManager)
 {
-	if (m_isActive)
+	if (_isActive)
 	{
-		for (int j = 0; j < m_children.size(); ++j)
+		for (int j = 0; j < _children.size(); ++j)
 		{
 			{
-				m_children[j].RegisterComponents(t_gameLoop, t_renderManager);
+				_children[j].RegisterComponents(t_gameLoop, t_renderManager);
 			}
 		}
-		for (int i = 0; i < m_components.size(); ++i)
+		for (int i = 0; i < _components.size(); ++i)
 		{
-			m_components[i]->Register(t_gameLoop, t_renderManager);
+			_components[i]->Register(t_gameLoop, t_renderManager);
 		}
 	}
 
@@ -78,7 +82,7 @@ void GameObject::RegisterComponents(GameLoop& t_gameLoop, RenderManager& t_rende
 
 bool GameObject::ContainsComponent(Component* t_component) const
 {
-	for (auto component : m_components)
+	for (auto component : _components)
 	{
 		if (typeid(t_component) == typeid(component))
 		{

@@ -6,8 +6,8 @@
 class Button : public UIElement
 {
 private:
-	SpriteComponent m_spriteComponent;
-	Collider m_collider;
+	SpriteComponent _spriteComponent;
+	Collider _collider;
 
 
 public:

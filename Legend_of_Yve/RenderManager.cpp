@@ -7,9 +7,9 @@
 
 bool RenderManager::ComponentExists(SpriteComponent* t_drawable) const
 {
-	for (int i = 0; i < m_renderComponents.size(); ++i)
+	for (int i = 0; i < _renderComponents.size(); ++i)
 	{
-		if (m_renderComponents[i] == t_drawable)
+		if (_renderComponents[i] == t_drawable)
 		{
 			return true;
 		}
@@ -21,28 +21,28 @@ void RenderManager::Register(SpriteComponent* t_drawable)
 {
 	if (!ComponentExists(t_drawable))
 	{
-		m_renderComponents.push_back(t_drawable);
+		_renderComponents.push_back(t_drawable);
 	}
 }
 
 void RenderManager::UnRegister(SpriteComponent* t_drawable)
 {
-	for (int i = 0; i < m_renderComponents.size(); ++i)
+	for (int i = 0; i < _renderComponents.size(); ++i)
 	{
-		if (m_renderComponents[i] == t_drawable)
+		if (_renderComponents[i] == t_drawable)
 		{
-			m_renderComponents.erase(m_renderComponents.begin() + i);
+			_renderComponents.erase(_renderComponents.begin() + i);
 			break;
 		}
 	}
 }
 
 RenderManager::RenderManager(sf::RenderWindow* t_window)
-	:m_renderComponents(std::vector<SpriteComponent*>(0)), m_gameWindowRef(t_window)
+	:_renderComponents(std::vector<SpriteComponent*>(0)), _gameWindowRef(t_window)
 {
 }
 
-RenderManager::RenderManager() : m_gameWindowRef(nullptr), m_renderComponents(std::vector<SpriteComponent*>(0))
+RenderManager::RenderManager() : _gameWindowRef(nullptr), _renderComponents(std::vector<SpriteComponent*>(0))
 {
 }
 
@@ -52,19 +52,19 @@ RenderManager::~RenderManager()
 
 void RenderManager::Window(sf::RenderWindow* window)
 {
-	m_gameWindowRef = window;
+	_gameWindowRef = window;
 }
 
 void RenderManager::render()
 {
-	m_gameWindowRef->clear();
+	_gameWindowRef->clear();
 
-	for (int i = 0; i < m_renderComponents.size(); ++i)
+	for (int i = 0; i < _renderComponents.size(); ++i)
 	{
-		m_renderComponents[i]->render(*m_gameWindowRef);
+		_renderComponents[i]->render(*_gameWindowRef);
 	}
 
-	m_gameWindowRef->display();
+	_gameWindowRef->display();
 }
 
 void RenderManager::initialize()

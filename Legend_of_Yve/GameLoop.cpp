@@ -6,9 +6,9 @@
 
 void GameLoop::update()
 {
-	for (int i = 0; i < m_components.size(); ++i)
+	for (int i = 0; i < _components.size(); ++i)
 	{
-		m_components[i]->update();
+		_components[i]->update();
 	}
 }
 
@@ -33,7 +33,7 @@ void GameLoop::run(bool& t_gameRunning, Game& t_game, RenderManager& t_renderMan
 
 void GameLoop::Register(Component* t_component)
 {
-	m_components.push_back(t_component);
+	_components.push_back(t_component);
 }
 
 void GameLoop::initialize()

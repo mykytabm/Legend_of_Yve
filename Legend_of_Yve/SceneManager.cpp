@@ -3,7 +3,7 @@
 #include "ServiceLocator.h"
 #include "RenderManager.h"
 #include "GameLoop.h"
-SceneManager::SceneManager() :m_currentScene(nullptr)
+SceneManager::SceneManager() :_currentScene(nullptr)
 {
 
 }
@@ -30,13 +30,13 @@ void SceneManager::RegisterGameObjects(Scene* t_scene) const
 
 void SceneManager::LoadScene(Scene* t_scene)
 {
-	if (m_currentScene != nullptr)
+	if (_currentScene != nullptr)
 	{
 		//close previous scene;
 	}
-	m_currentScene = t_scene;
-	m_currentScene->initialize();
-	m_currentScene->Start();
+	_currentScene = t_scene;
+	_currentScene->initialize();
+	_currentScene->Start();
 	RegisterGameObjects(t_scene);
 }
 

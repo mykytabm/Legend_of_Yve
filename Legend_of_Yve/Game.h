@@ -9,19 +9,19 @@ class Game : public Service
 {
 private:
 
-	SceneManager m_sceneManager;
-	GameLoop m_gameLoop;
-	RenderManager m_renderManager;
+	SceneManager _sceneManager;
+	GameLoop _gameLoop;
+	RenderManager _renderManager;
 	void InitializeServices();
-	bool m_gameRunning;
+	bool _gameRunning;
 
-	sf::RenderWindow m_gameWindow;
+	sf::RenderWindow _gameWindow;
 
 public:
-	sf::RenderWindow& Window() { return m_gameWindow; };
+	sf::RenderWindow& Window() { return _gameWindow; };
 	Game();
 	~Game();
-	bool& GameRunning() { return m_gameRunning; };
+	bool& GameRunning() { return _gameRunning; };
 	void ProcessEvents();
 	void run();
 	void exit();

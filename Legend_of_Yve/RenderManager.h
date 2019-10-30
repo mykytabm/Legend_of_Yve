@@ -7,8 +7,8 @@ class SpriteComponent;
 class RenderManager : public Service
 {
 private:
-	sf::RenderWindow* m_gameWindowRef;
-	std::vector<SpriteComponent*> m_renderComponents;
+	sf::RenderWindow* _gameWindowRef;
+	std::vector<SpriteComponent*> _renderComponents;
 public:
 	bool ComponentExists(SpriteComponent* t_drawable) const;
 	void Register(SpriteComponent* t_drawable);

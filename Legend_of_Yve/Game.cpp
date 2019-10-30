@@ -8,17 +8,17 @@ void Game::InitializeServices()
 {
 
 	ServiceLocator::instance()->AddService(*this);
-	ServiceLocator::instance()->AddService(m_gameLoop);
-	ServiceLocator::instance()->AddService(m_renderManager);
-	ServiceLocator::instance()->AddService(m_sceneManager);
+	ServiceLocator::instance()->AddService(_gameLoop);
+	ServiceLocator::instance()->AddService(_renderManager);
+	ServiceLocator::instance()->AddService(_sceneManager);
 
-	m_renderManager.initialize();
-	m_gameLoop.initialize();
-	m_sceneManager.initialize();
+	_renderManager.initialize();
+	_gameLoop.initialize();
+	_sceneManager.initialize();
 
 }
 
-Game::Game() : m_gameWindow(sf::VideoMode(1280, 720), "Legend Of Yve"), m_renderManager(&m_gameWindow)
+Game::Game() : _gameWindow(sf::VideoMode(1280, 720), "Legend Of Yve"), _renderManager(&_gameWindow)
 {
 }
 
@@ -33,19 +33,19 @@ void Game::initialize()
 
 	InitializeServices();
 
-	m_gameRunning = true;
+	_gameRunning = true;
 
 
 	StartScreen* startScreen = new StartScreen("welcome screen");
 
-	m_sceneManager.LoadScene(startScreen);
+	_sceneManager.LoadScene(startScreen);
 
 }
 
 void Game::ProcessEvents()
 {
 	sf::Event event;
-	while (m_gameWindow.pollEvent(event))
+	while (_gameWindow.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed) {
 			exit();
@@ -59,19 +59,19 @@ void Game::ProcessEvents()
 
 void Game::run()
 {
-	m_gameLoop.run(m_gameRunning, *this, m_renderManager);
+	_gameLoop.run(_gameRunning, *this, _renderManager);
 
 }
 
 void Game::exit()
 {
-	if (m_gameWindow.isOpen()) {
-		//delete m_sceneManager;
-		//delete m_renderManager;
-		//delete m_gameLoop;
-		m_gameWindow.close();
-		//delete m_gameWindow;
-		m_gameRunning = false;
+	if (_gameWindow.isOpen()) {
+		//delete _sceneManager;
+		//delete _renderManager;
+		//delete _gameLoop;
+		_gameWindow.close();
+		//delete _gameWindow;
+		_gameRunning = false;
 	}
 }
 

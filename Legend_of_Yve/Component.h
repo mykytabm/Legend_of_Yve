@@ -7,9 +7,9 @@ class RenderManager;
 class Component
 {
 private:
-	GameObject* m_owner;
+	GameObject* _owner;
 public:
-	inline void SetGameObject(GameObject& t_gameObject) { m_owner = &t_gameObject; };
+	inline void SetGameObject(GameObject& t_gameObject) { _owner = &t_gameObject; };
 
 	Component() {};
 	virtual ~Component() {};

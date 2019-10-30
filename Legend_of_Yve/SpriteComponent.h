@@ -5,12 +5,12 @@
 class SpriteComponent : public Component
 {
 private:
-	sf::Sprite m_sprite;
-	sf::Texture m_texture;
+	sf::Sprite _sprite;
+	sf::Texture _texture;
 
 public:
-	void SetSprite(std::string t_imagePath) { m_texture.loadFromFile(t_imagePath); m_sprite.setTexture(m_texture); };
-	sf::Sprite& Sprite() { return m_sprite; };
+	void SetSprite(std::string t_imagePath) { _texture.loadFromFile(t_imagePath); _sprite.setTexture(_texture); };
+	sf::Sprite& Sprite() { return _sprite; };
 
 	SpriteComponent();
 	~SpriteComponent();
