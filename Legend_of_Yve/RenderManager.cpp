@@ -1,11 +1,11 @@
 #include "RenderManager.h"
-#include "SpriteComponent.h"
+#include "RenderComponent.h"
 #include "ServiceLocator.h"
 #include <iostream>
 #include "Game.h"
 
 
-bool RenderManager::ComponentExists(SpriteComponent* t_drawable) const
+bool RenderManager::ComponentExists(RenderComponent* t_drawable) const
 {
 	for (int i = 0; i < _renderComponents.size(); ++i)
 	{
@@ -17,7 +17,7 @@ bool RenderManager::ComponentExists(SpriteComponent* t_drawable) const
 	return false;
 }
 
-void RenderManager::Register(SpriteComponent* t_drawable)
+void RenderManager::Register(RenderComponent* t_drawable)
 {
 	if (!ComponentExists(t_drawable))
 	{
@@ -25,7 +25,7 @@ void RenderManager::Register(SpriteComponent* t_drawable)
 	}
 }
 
-void RenderManager::UnRegister(SpriteComponent* t_drawable)
+void RenderManager::UnRegister(RenderComponent* t_drawable)
 {
 	for (int i = 0; i < _renderComponents.size(); ++i)
 	{
@@ -38,11 +38,11 @@ void RenderManager::UnRegister(SpriteComponent* t_drawable)
 }
 
 RenderManager::RenderManager(sf::RenderWindow* t_window)
-	:_renderComponents(std::vector<SpriteComponent*>(0)), _gameWindowRef(t_window)
+	:_renderComponents(std::vector<RenderComponent*>(0)), _gameWindowRef(t_window)
 {
 }
 
-RenderManager::RenderManager() : _gameWindowRef(nullptr), _renderComponents(std::vector<SpriteComponent*>(0))
+RenderManager::RenderManager() : _gameWindowRef(nullptr), _renderComponents(std::vector<RenderComponent*>(0))
 {
 }
 

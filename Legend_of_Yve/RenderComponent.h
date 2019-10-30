@@ -4,6 +4,9 @@
 class RenderComponent :
 	public Component
 {
-	virtual void render(sf::RenderWindow& t_window) const;
+public:
+	virtual void render(sf::RenderWindow& t_window) const {};
+	void Register(GameLoop& t_gameLoop, RenderManager& t_renderManager) override;
+
 };
 

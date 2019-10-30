@@ -2,7 +2,8 @@
 #include "Component.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-class SpriteComponent : public Component
+#include "RenderComponent.h"
+class SpriteComponent : public RenderComponent
 {
 private:
 	sf::Sprite _sprite;
@@ -18,7 +19,6 @@ public:
 	SpriteComponent();
 	~SpriteComponent();
 
-	void render(sf::RenderWindow& t_window) const;
-	void Register(GameLoop& t_gameLoop, RenderManager& t_renderManager) override;
+	void render(sf::RenderWindow& t_window) const override;
 };
 
