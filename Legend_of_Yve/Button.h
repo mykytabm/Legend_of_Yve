@@ -11,6 +11,7 @@ private:
 	SpriteComponent _spriteComponent;
 	Collider _collider;
 
+
 	bool MouseClick(int button);
 	typedef std::function<void()> OnClickListener;
 	OnClickListener onClick;

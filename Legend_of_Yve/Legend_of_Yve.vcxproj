@@ -178,6 +178,7 @@
     <ClCompile Include="Service.cpp" />
     <ClCompile Include="ServiceLocator.cpp" />
     <ClCompile Include="StartScreen.cpp" />
+    <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="UIElement.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +196,7 @@
     <ClInclude Include="Service.h" />
     <ClInclude Include="ServiceLocator.h" />
     <ClInclude Include="StartScreen.h" />
+    <ClInclude Include="TextComponent.h" />
     <ClInclude Include="UIElement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

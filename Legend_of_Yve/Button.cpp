@@ -33,8 +33,6 @@ bool Button::MouseClick(int button)
 		return true;
 	}
 
-
-
 	return false;
 }
 
