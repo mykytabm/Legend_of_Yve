@@ -14,5 +14,11 @@ Button::~Button()
 
 void Button::Start()
 {
+	_spriteComponent.SetPosition(&_position);
+	_collider.SetPosition(&_position);
+}
 
+void Button::Update()
+{
+	
 }

@@ -1,18 +1,27 @@
 #include "GameObject.h"
 #include "Component.h"
 #include <typeinfo>
+#include "GameLoop.h"
 
 
 
 
+void GameObject::StartComponents()
+{
+
+	for (int i = 0; i < _components.size(); ++i)
+	{
+		_components[i]->Start();
+	}
+}
 
 void GameObject::Start()
 {
-
 }
 
 void GameObject::Update()
 {
+
 }
 
 GameObject::GameObject(std::string t_name) : _name(t_name)
@@ -22,19 +31,7 @@ GameObject::GameObject(std::string t_name) : _name(t_name)
 
 GameObject::~GameObject()
 {
-	if (_isActive)
-	{
-		for (int j = 0; j < _children.size(); ++j)
-		{
-			{
-				_children[j].Start();
-			}
-		}
-		for (int i = 0; i < _components.size(); ++i)
-		{
-			_components[i]->Start();
-		}
-	}
+
 }
 
 
@@ -60,14 +57,15 @@ void GameObject::AddComponent(Component* t_component)
 	}
 }
 
-void GameObject::RegisterComponents(GameLoop& t_gameLoop, RenderManager& t_renderManager)
+void GameObject::Register(GameLoop& t_gameLoop, RenderManager& t_renderManager)
 {
 	if (_isActive)
 	{
+		t_gameLoop.Register(this);
 		for (int j = 0; j < _children.size(); ++j)
 		{
 			{
-				_children[j].RegisterComponents(t_gameLoop, t_renderManager);
+				_children[j].Register(t_gameLoop, t_renderManager);
 			}
 		}
 		for (int i = 0; i < _components.size(); ++i)

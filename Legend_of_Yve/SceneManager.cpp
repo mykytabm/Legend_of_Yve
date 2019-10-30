@@ -24,7 +24,7 @@ void SceneManager::RegisterGameObjects(Scene* t_scene) const
 
 	for (int i = 0; i < t_scene->GameObjects().size(); ++i)
 	{
-		t_scene->GameObjects()[i]->RegisterComponents(gameLoopRef, renderManagerRef);
+		t_scene->GameObjects()[i]->Register(gameLoopRef, renderManagerRef);
 	}
 }
 

@@ -17,7 +17,7 @@ public:
 	virtual void initialize() = 0;
 	virtual void update() = 0;
 	virtual void render(sf::RenderWindow& t_window) = 0;
-	virtual void Start() { for (int i = 0; i < _gameObjects.size(); ++i)_gameObjects[i]->Start(); };
+	virtual void Start() { for (int i = 0; i < _gameObjects.size(); ++i) { _gameObjects[i]->Start(); _gameObjects[i]->StartComponents(); } };
 
 	std::vector<GameObject*> const GameObjects() { return _gameObjects; };
 	std::vector<GameObject*> const InactiveGameObjects() { return _inactiveGameObjects; };

@@ -66,11 +66,7 @@ void Game::run()
 void Game::exit()
 {
 	if (_gameWindow.isOpen()) {
-		//delete _sceneManager;
-		//delete _renderManager;
-		//delete _gameLoop;
 		_gameWindow.close();
-		//delete _gameWindow;
 		_gameRunning = false;
 	}
 }

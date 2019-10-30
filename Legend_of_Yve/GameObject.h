@@ -8,8 +8,8 @@ class GameLoop;
 class GameObject
 {
 
-private:
-
+public:
+	void StartComponents();
 protected:
 	bool _isActive = true;
 	std::vector<Component*> _components;
@@ -39,7 +39,7 @@ public:
 	T& GetComponent() const;
 
 	void AddComponent(Component* t_component);
-	void RegisterComponents(GameLoop& t_gameLoop, RenderManager& t_renderManager);
+	void Register(GameLoop& t_gameLoop, RenderManager& t_renderManager);
 	bool ContainsComponent(Component* t_component) const;
 
 };

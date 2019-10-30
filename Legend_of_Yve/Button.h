@@ -16,5 +16,6 @@ public:
 	Button();
 	~Button();
 	void Start() override;
+	void Update() override;
 };
 

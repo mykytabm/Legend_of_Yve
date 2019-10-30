@@ -3,9 +3,16 @@
 #include "Component.h"
 #include "Game.h"
 #include "RenderManager.h"
+#include "GameObject.h"
 
 void GameLoop::update()
 {
+
+	for (int i = 0; i < _gameObjects.size(); ++i)
+	{
+		_gameObjects[i]->Update();
+	}
+
 	for (int i = 0; i < _components.size(); ++i)
 	{
 		_components[i]->update();
@@ -34,6 +41,11 @@ void GameLoop::run(bool& t_gameRunning, Game& t_game, RenderManager& t_renderMan
 void GameLoop::Register(Component* t_component)
 {
 	_components.push_back(t_component);
+}
+
+void GameLoop::Register(GameObject* t_gameObject)
+{
+	_gameObjects.push_back(t_gameObject);
 }
 
 void GameLoop::initialize()

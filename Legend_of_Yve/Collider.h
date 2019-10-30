@@ -15,7 +15,7 @@ public:
 	void SetSize(sf::Vector2f t_size) { _size = t_size; };
 	sf::Vector2f position() const { return _position; };
 	void SetPosition(sf::Vector2f t_position) { _position = t_position; };
-
+	void SetPosition(sf::Vector2f* t_position) { _position = *t_position; };
 	Collider() {};	
 	~Collider();
 
