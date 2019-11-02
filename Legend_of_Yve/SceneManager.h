@@ -8,6 +8,7 @@ private:
 	Scene* _currentScene;
 	std::list<Scene*> _scenes;
 	void RegisterGameObjects(Scene* t_scene);
+	void DeRegisterGameObjects(Scene* t_scene);
 public:
 	Scene* CurrentScene() { return _currentScene; };
 	void LoadScene(Scene* t_scene);

@@ -25,16 +25,9 @@ void RenderManager::Register(RenderComponent* t_drawable)
 	}
 }
 
-void RenderManager::UnRegister(RenderComponent* t_drawable)
+void RenderManager::DeRegister(RenderComponent* t_drawable)
 {
-	for (int i = 0; i < _renderComponents.size(); ++i)
-	{
-		if (_renderComponents[i] == t_drawable)
-		{
-			_renderComponents.erase(_renderComponents.begin() + i);
-			break;
-		}
-	}
+	_renderComponents.erase(std::remove(_renderComponents.begin(), _renderComponents.end(), t_drawable), _renderComponents.end());
 }
 
 RenderManager::RenderManager(sf::RenderWindow* t_window)

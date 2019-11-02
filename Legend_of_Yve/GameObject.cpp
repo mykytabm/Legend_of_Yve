@@ -2,7 +2,7 @@
 #include "Component.h"
 #include <typeinfo>
 #include "GameLoop.h"
-
+#include <iostream>
 
 
 
@@ -53,7 +53,6 @@ void GameObject::AddComponent(Component* t_component)
 	if (ContainsComponent(t_component) == false)
 	{
 		_components.push_back(t_component);
-		//register component
 	}
 }
 
@@ -62,18 +61,29 @@ void GameObject::Register(GameLoop& t_gameLoop, RenderManager& t_renderManager)
 	if (_isActive)
 	{
 		t_gameLoop.Register(this);
-		for (int j = 0; j < _children.size(); ++j)
-		{
-			{
-				_children[j].Register(t_gameLoop, t_renderManager);
-			}
-		}
 		for (int i = 0; i < _components.size(); ++i)
 		{
 			_components[i]->Register(t_gameLoop, t_renderManager);
 		}
 	}
 
+}
+
+void GameObject::DeRegister(GameLoop& t_gameLoop, RenderManager& t_renderManager)
+{
+	if (!_persistant)
+	{
+		t_gameLoop.DeRegister(this);
+		while (!_components.empty())
+		{
+			_components.front()->DeRegister(t_gameLoop, t_renderManager);
+			Component* temp = _components.front();
+			_components.pop_back();
+			std::cout << "Deleting component" << std::endl;
+			//TODO: Delete component
+			//delete temp;
+		}
+	}
 }
 
 

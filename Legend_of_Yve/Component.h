@@ -16,5 +16,6 @@ public:
 	virtual void Start() {};
 	virtual void update() {};
 	virtual void Register(GameLoop& t_gameLoop, RenderManager& t_renderManager);
+	virtual void DeRegister(GameLoop& t_gameLoop, RenderManager& t_renderManager);
 };
 

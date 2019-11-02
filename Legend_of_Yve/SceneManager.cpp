@@ -28,11 +28,24 @@ void SceneManager::RegisterGameObjects(Scene* t_scene)
 	}
 }
 
+void SceneManager::DeRegisterGameObjects(Scene* t_scene)
+{
+	RenderManager& renderManagerRef = *ServiceLocator::instance()->GetService<RenderManager>();
+	GameLoop& gameLoopRef = *ServiceLocator::instance()->GetService<GameLoop>();
+	std::vector<GameObject*> temp = t_scene->GameObjects();
+	for (int i = 0; i < temp.size(); ++i)
+	{
+		temp[i]->DeRegister(gameLoopRef, renderManagerRef);
+	}
+}
+
 void SceneManager::LoadScene(Scene* t_scene)
 {
 	if (_currentScene != nullptr)
 	{
 		//close previous scene;
+		std::cout << "Deleting previous scene" << std::endl;
+		DeRegisterGameObjects(_currentScene);
 	}
 	_currentScene = t_scene;
 	_currentScene->initialize();
@@ -46,6 +59,8 @@ void SceneManager::LoadScene(std::string t_sceneName)
 	if (_currentScene != nullptr)
 	{
 		//close previous scene;
+		std::cout << "Deleting previous scene" << std::endl;
+		DeRegisterGameObjects(_currentScene);
 	}
 	_currentScene = s;
 	_currentScene->initialize();

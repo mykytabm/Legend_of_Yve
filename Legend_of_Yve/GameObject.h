@@ -12,6 +12,7 @@ public:
 	void StartComponents();
 protected:
 	bool _isActive = true;
+	bool _persistant = false;
 	std::vector<Component*> _components;
 	std::vector<GameObject> _children;
 	std::string _name;
@@ -26,12 +27,12 @@ public:
 	bool Active() const { return _isActive; };
 	std::vector<Component*> Components() { return _components; };
 	std::string Name() const { return  _name; };
-
 	sf::Vector2f Position() const { return _position; };
 	void SetPosition(const sf::Vector2f t_newPosition) { _position = t_newPosition; };
 	template <typename T>
 	void AddComponent();
-
+	void DoNotDestroyOnLoad(bool value) { _persistant = value; };
+	bool DoNotDestroyOnLoad() { return _persistant; };
 	template<typename T>
 	bool ContainsComponent(T t_type) const;
 
@@ -40,6 +41,7 @@ public:
 
 	void AddComponent(Component* t_component);
 	void Register(GameLoop& t_gameLoop, RenderManager& t_renderManager);
+	void DeRegister(GameLoop& t_gameLoop, RenderManager& t_renderManager);
 	bool ContainsComponent(Component* t_component) const;
 
 };

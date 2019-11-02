@@ -7,8 +7,10 @@ int main()
 {
 	Game game;
 	StartScreen startScreen = StartScreen("MainMenu");
+	StartScreen startScreen1 = StartScreen("MainMenu1");
 
-	std::list<Scene*> yveGameScenes = { &startScreen };
+
+	std::list<Scene*> yveGameScenes = { &startScreen,&startScreen1 };
 
 
 	game.initialize(yveGameScenes);
