@@ -27,6 +27,6 @@ public:
 	void exit();
 
 	// Inherited via Service
-	virtual void initialize() override;
+	void initialize(std::list<Scene*> t_scenes);
 };
 

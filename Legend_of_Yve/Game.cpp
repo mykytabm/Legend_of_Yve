@@ -27,21 +27,6 @@ Game::~Game()
 
 }
 
-
-void Game::initialize()
-{
-
-	InitializeServices();
-
-	_gameRunning = true;
-
-
-	StartScreen* startScreen = new StartScreen("welcome screen");
-
-	_sceneManager.LoadScene(startScreen);
-
-}
-
 void Game::ProcessEvents()
 {
 	sf::Event event;
@@ -69,5 +54,13 @@ void Game::exit()
 		_gameWindow.close();
 		_gameRunning = false;
 	}
+}
+
+void Game::initialize(std::list<Scene*> t_scenes)
+{
+	InitializeServices();
+	_sceneManager.SetScenes(t_scenes);
+	_sceneManager.LoadScene(t_scenes.front());
+	_gameRunning = true;
 }
 
