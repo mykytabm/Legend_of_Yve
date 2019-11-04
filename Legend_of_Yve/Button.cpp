@@ -59,8 +59,6 @@ void Button::Start()
 
 void Button::Update()
 {
-
-
 	int x = sf::Mouse::getPosition(ServiceLocator::Instance()->GetService<Game>()->Window()).x;
 	int y = sf::Mouse::getPosition(ServiceLocator::Instance()->GetService<Game>()->Window()).y;
 	bool xCheck = (x >= _collider.Position().x) && (x < _collider.Position().x + _collider.Size().x);

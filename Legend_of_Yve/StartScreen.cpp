@@ -7,12 +7,12 @@
 void StartScreen::SetupGameObjects()
 {
 	sf::Font* font = new sf::Font();
-	font->loadFromFile("../src/Triforce.otf");
+	font->loadFromFile("../src/Arial.ttf");
 	Button* spriteBtn = new Button();
 	this->AddGameObject(spriteBtn);
 	spriteBtn->Sprite("../src/button.png");
 	spriteBtn->Text().setString("To Main Menu");
-	spriteBtn->Text().setFillColor(sf::Color::Black);
+	spriteBtn->Text().setFillColor(sf::Color::White);
 	spriteBtn->Text().setFont(*font);
 	sf::Vector2u  windowSize = ServiceLocator::Instance()->GetService<Game>()->Window().getSize();
 	spriteBtn->SetPosition(sf::Vector2f(windowSize.x / 2 - spriteBtn->Sprite().getTexture()->getSize().x / 2,

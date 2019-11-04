@@ -17,7 +17,7 @@ void MainMenu::SetupGameObjects()
 	this->AddGameObject(playBtn);
 	font->loadFromFile("../src/Triforce.otf");
 	playBtn->Sprite("../src/button.png");
-	playBtn->Text().setFillColor(sf::Color::Black);
+	playBtn->Text().setFillColor(sf::Color::White);
 	playBtn->Text().setString("Play");
 	playBtn->Text().setFont(*font);
 	playBtn->SetPosition(sf::Vector2f(windowSize.x - 30 - playBtn->Sprite().getTexture()->getSize().x,
@@ -32,7 +32,7 @@ void MainMenu::SetupGameObjects()
 	this->AddGameObject(eraseDataBtn);
 	font->loadFromFile("../src/Triforce.otf");
 	eraseDataBtn->Sprite("../src/button.png");
-	eraseDataBtn->Text().setFillColor(sf::Color::Black);
+	eraseDataBtn->Text().setFillColor(sf::Color::White);
 	eraseDataBtn->Text().setString("Erase Data");
 	eraseDataBtn->Text().setFont(*font);
 	eraseDataBtn->SetPosition(sf::Vector2f(windowSize.x - 30 - eraseDataBtn->Sprite().getTexture()->getSize().x,
@@ -45,9 +45,9 @@ void MainMenu::SetupGameObjects()
 
 	Button* quitBtn = new Button();
 	this->AddGameObject(quitBtn);
-	font->loadFromFile("../src/Triforce.otf");
+	font->loadFromFile("../src/Arial.ttf");
 	quitBtn->Sprite("../src/button.png");
-	quitBtn->Text().setFillColor(sf::Color::Black);
+	quitBtn->Text().setFillColor(sf::Color::White);
 	quitBtn->Text().setString("Quit");
 	quitBtn->Text().setFont(*font);
 	quitBtn->SetPosition(sf::Vector2f(windowSize.x - 30 - quitBtn->Sprite().getTexture()->getSize().x,
