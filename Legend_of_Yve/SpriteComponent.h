@@ -19,6 +19,6 @@ public:
 	SpriteComponent();
 	~SpriteComponent();
 
-	void render(sf::RenderWindow& t_window) const override;
+	void Render(sf::RenderWindow& t_window) const override;
 };
 

@@ -6,7 +6,7 @@
 #include "GameObject.h"
 #include <algorithm>
 
-void GameLoop::update()
+void GameLoop::Update()
 {
 
 	for (int i = 0; i < _gameObjects.size(); ++i)
@@ -16,7 +16,7 @@ void GameLoop::update()
 
 	for (int i = 0; i < _components.size(); ++i)
 	{
-		_components[i]->update();
+		_components[i]->Update();
 	}
 }
 
@@ -28,13 +28,13 @@ GameLoop::~GameLoop()
 {
 }
 
-void GameLoop::run(bool& t_gameRunning, Game& t_game, RenderManager& t_renderManager)
+void GameLoop::Run(bool& t_gameRunning, Game& t_game, RenderManager& t_renderManager)
 {
 	while (t_game.GameRunning())
 	{
 		t_game.ProcessEvents();
-		this->update();
-		t_renderManager.render();
+		this->Update();
+		t_renderManager.Render();
 	}
 
 }
@@ -83,7 +83,7 @@ bool GameLoop::Contains(Component* t_component)
 	return false;
 }
 
-void GameLoop::initialize()
+void GameLoop::Initialize()
 {
 
 }

@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics.hpp>
 class Component;
 class RenderManager;
 class GameLoop;
@@ -19,9 +20,10 @@ protected:
 	sf::Vector2f _position;
 
 public:
-	GameObject() {};
+	GameObject() { };
 	virtual void Start();
 	virtual void Update();
+	//virtual void HandleEvent(const sf::Event& t_event) { };
 	GameObject(const std::string t_name);
 	virtual ~GameObject();
 	bool Active() const { return _isActive; };

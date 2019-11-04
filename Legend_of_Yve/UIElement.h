@@ -9,7 +9,7 @@ private:
 protected:
 
 public:
-	UIElement() {};
+	UIElement() { };
 	UIElement( const std::string t_name);
 	~UIElement();
 };

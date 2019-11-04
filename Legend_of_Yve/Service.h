@@ -2,7 +2,7 @@
 class Service
 {
 public:
-	virtual void initialize() {};
-	virtual ~Service() {};
+	virtual void Initialize() { };
+	virtual ~Service() { };
 };
 

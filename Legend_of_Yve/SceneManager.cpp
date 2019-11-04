@@ -12,15 +12,15 @@ SceneManager::~SceneManager()
 {
 }
 
-void SceneManager::initialize()
+void SceneManager::Initialize()
 {
 
 }
 
 void SceneManager::RegisterGameObjects(Scene* t_scene)
 {
-	RenderManager& renderManagerRef = *ServiceLocator::instance()->GetService<RenderManager>();
-	GameLoop& gameLoopRef = *ServiceLocator::instance()->GetService<GameLoop>();
+	RenderManager& renderManagerRef = *ServiceLocator::Instance()->GetService<RenderManager>();
+	GameLoop& gameLoopRef = *ServiceLocator::Instance()->GetService<GameLoop>();
 
 	for (int i = 0; i < t_scene->GameObjects().size(); ++i)
 	{
@@ -30,8 +30,8 @@ void SceneManager::RegisterGameObjects(Scene* t_scene)
 
 void SceneManager::DeRegisterGameObjects(Scene* t_scene)
 {
-	RenderManager& renderManagerRef = *ServiceLocator::instance()->GetService<RenderManager>();
-	GameLoop& gameLoopRef = *ServiceLocator::instance()->GetService<GameLoop>();
+	RenderManager& renderManagerRef = *ServiceLocator::Instance()->GetService<RenderManager>();
+	GameLoop& gameLoopRef = *ServiceLocator::Instance()->GetService<GameLoop>();
 	std::vector<GameObject*> temp = t_scene->GameObjects();
 	for (int i = 0; i < temp.size(); ++i)
 	{
@@ -48,7 +48,7 @@ void SceneManager::LoadScene(Scene* t_scene)
 		DeRegisterGameObjects(_currentScene);
 	}
 	_currentScene = t_scene;
-	_currentScene->initialize();
+	_currentScene->Initialize();
 	_currentScene->Start();
 	RegisterGameObjects(t_scene);
 }
@@ -63,7 +63,7 @@ void SceneManager::LoadScene(std::string t_sceneName)
 		DeRegisterGameObjects(_currentScene);
 	}
 	_currentScene = s;
-	_currentScene->initialize();
+	_currentScene->Initialize();
 	_currentScene->Start();
 	RegisterGameObjects(s);
 }

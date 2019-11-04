@@ -17,7 +17,7 @@ public:
 	RenderManager();
 	~RenderManager();
 	void Window(sf::RenderWindow* window);
-	void render();
-	virtual void initialize() override;
+	void Render();
+	virtual void Initialize() override;
 };
 

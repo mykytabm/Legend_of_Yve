@@ -14,13 +14,13 @@ private:
 	std::vector<GameObject*> _gameObjects;
 	std::vector<Component*> _components;
 
-	void update();
+	void Update();
 
 
 public:
 	GameLoop();
 	~GameLoop();
-	void run(bool& t_gameRunning, Game& t_game, RenderManager& t_renderManager);
+	void Run(bool& t_gameRunning, Game& t_game, RenderManager& t_renderManager);
 	void Register(Component* t_component);
 	void Register(GameObject* t_gameObject);
 	void DeRegister(GameObject* t_gameObject);
@@ -28,7 +28,7 @@ public:
 	bool Contains(GameObject* t_gameObject);
 	bool Contains(Component* t_component);
 	// Inherited via Service
-	virtual void initialize() override;
+	virtual void Initialize() override;
 
 
 };

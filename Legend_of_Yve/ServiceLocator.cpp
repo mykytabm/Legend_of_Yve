@@ -3,7 +3,7 @@
 
 ServiceLocator* ServiceLocator::_instance = nullptr;
 
-ServiceLocator* ServiceLocator::instance()
+ServiceLocator* ServiceLocator::Instance()
 {
 	if (_instance == nullptr)
 	{

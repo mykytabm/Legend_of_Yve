@@ -48,19 +48,19 @@ void RenderManager::Window(sf::RenderWindow* window)
 	_gameWindowRef = window;
 }
 
-void RenderManager::render()
+void RenderManager::Render()
 {
 	_gameWindowRef->clear();
 
 	for (int i = 0; i < _renderComponents.size(); ++i)
 	{
-		_renderComponents[i]->render(*_gameWindowRef);
+		_renderComponents[i]->Render(*_gameWindowRef);
 	}
 
 	_gameWindowRef->display();
 }
 
-void RenderManager::initialize()
+void RenderManager::Initialize()
 {
 
 }

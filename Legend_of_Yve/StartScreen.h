@@ -5,13 +5,12 @@
 class StartScreen :public Scene
 {
 public:
-	StartScreen(std::string t_id);
-
+	StartScreen(const std::string t_id) { _id = t_id; };
 	~StartScreen();
 
 	// Inherited via Scene
-	virtual void update();
-	virtual void initialize();
+	virtual void Update();
+	virtual void Initialize();
 	virtual void SetupGameObjects();
 };
 

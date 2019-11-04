@@ -10,8 +10,8 @@ private:
 	sf::Text _text;
 public:
 	void Start() override;
-	void update() override;
+	void Update() override;
 
-	void render(sf::RenderWindow& t_window) const override;
+	void Render(sf::RenderWindow& t_window) const override;
 };
 

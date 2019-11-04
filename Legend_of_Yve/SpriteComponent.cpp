@@ -10,7 +10,7 @@ SpriteComponent::~SpriteComponent()
 {
 
 }
-void SpriteComponent::render(sf::RenderWindow& t_window) const
+void SpriteComponent::Render(sf::RenderWindow& t_window) const
 {
 	t_window.draw(_sprite);
 }

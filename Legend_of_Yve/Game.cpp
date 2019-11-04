@@ -7,14 +7,14 @@
 void Game::InitializeServices()
 {
 
-	ServiceLocator::instance()->AddService(*this);
-	ServiceLocator::instance()->AddService(_gameLoop);
-	ServiceLocator::instance()->AddService(_renderManager);
-	ServiceLocator::instance()->AddService(_sceneManager);
+	ServiceLocator::Instance()->AddService(*this);
+	ServiceLocator::Instance()->AddService(_gameLoop);
+	ServiceLocator::Instance()->AddService(_renderManager);
+	ServiceLocator::Instance()->AddService(_sceneManager);
 
-	_renderManager.initialize();
-	_gameLoop.initialize();
-	_sceneManager.initialize();
+	_renderManager.Initialize();
+	_gameLoop.Initialize();
+	_sceneManager.Initialize();
 
 }
 
@@ -33,22 +33,23 @@ void Game::ProcessEvents()
 	while (_gameWindow.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed) {
-			exit();
+			Exit();
 		}
-		if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape)) {
-			exit();
+		else
+		{
+			//proccess Scene events
 		}
 	}
 
 }
 
-void Game::run()
+void Game::Run()
 {
-	_gameLoop.run(_gameRunning, *this, _renderManager);
+	_gameLoop.Run(_gameRunning, *this, _renderManager);
 
 }
 
-void Game::exit()
+void Game::Exit()
 {
 	if (_gameWindow.isOpen()) {
 		_gameWindow.close();
@@ -56,7 +57,7 @@ void Game::exit()
 	}
 }
 
-void Game::initialize(std::list<Scene*> t_scenes)
+void Game::Initialize(std::list<Scene*> t_scenes)
 {
 	InitializeServices();
 	_sceneManager.SetScenes(t_scenes);

@@ -21,6 +21,6 @@ public:
 	~SceneManager();
 
 	// Inherited via Service
-	virtual void initialize() override;
+	virtual void Initialize() override;
 };
 

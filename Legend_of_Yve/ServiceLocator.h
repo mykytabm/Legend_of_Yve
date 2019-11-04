@@ -22,7 +22,7 @@ private:
 
 
 public:
-	static ServiceLocator* instance();
+	static ServiceLocator* Instance();
 	template<typename T>
 	void AddService(T& t_service);
 	template<typename T>

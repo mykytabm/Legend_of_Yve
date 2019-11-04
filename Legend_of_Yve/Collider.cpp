@@ -10,6 +10,6 @@ void Collider::Start()
 {
 }
 
-void Collider::update()
+void Collider::Update()
 {
 }

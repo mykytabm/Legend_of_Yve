@@ -23,10 +23,10 @@ public:
 	~Game();
 	bool& GameRunning() { return _gameRunning; };
 	void ProcessEvents();
-	void run();
-	void exit();
+	void Run();
+	void Exit();
 
 	// Inherited via Service
-	void initialize(std::list<Scene*> t_scenes);
+	void Initialize(std::list<Scene*> t_scenes);
 };
 
