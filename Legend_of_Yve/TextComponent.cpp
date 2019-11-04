@@ -8,6 +8,7 @@ void TextComponent::Update()
 
 }
 
+
 void TextComponent::Render(sf::RenderWindow& t_window) const
 {
 	t_window.draw(_text);

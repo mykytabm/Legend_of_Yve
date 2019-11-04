@@ -54,7 +54,7 @@ void Button::Start()
 	_collider.SetSize((sf::Vector2f)_spriteComponent.Sprite().getTexture()->getSize());
 	_spriteComponent.SetPosition(&_position);
 	_collider.SetPosition(&_position);
-	_textComponent.Text().setPosition(_position);
+	_textComponent.Text().setPosition(_position + sf::Vector2f(20, 2));
 }
 
 void Button::Update()
