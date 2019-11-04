@@ -17,55 +17,37 @@ void SceneManager::Initialize()
 
 }
 
-void SceneManager::RegisterGameObjects(Scene* t_scene)
-{
-	RenderManager& renderManagerRef = *ServiceLocator::Instance()->GetService<RenderManager>();
-	GameLoop& gameLoopRef = *ServiceLocator::Instance()->GetService<GameLoop>();
-
-	for (int i = 0; i < t_scene->GameObjects().size(); ++i)
-	{
-		t_scene->GameObjects()[i]->Register(gameLoopRef, renderManagerRef);
-	}
-}
-
-void SceneManager::DeRegisterGameObjects(Scene* t_scene)
-{
-	RenderManager& renderManagerRef = *ServiceLocator::Instance()->GetService<RenderManager>();
-	GameLoop& gameLoopRef = *ServiceLocator::Instance()->GetService<GameLoop>();
-	std::vector<GameObject*> temp = t_scene->GameObjects();
-	for (int i = 0; i < temp.size(); ++i)
-	{
-		temp[i]->DeRegister(gameLoopRef, renderManagerRef);
-	}
-}
-
 void SceneManager::LoadScene(Scene* t_scene)
 {
+	RenderManager* renderManagerRef = ServiceLocator::Instance()->GetService<RenderManager>();
+	GameLoop* gameLoopRef = ServiceLocator::Instance()->GetService<GameLoop>();
 	if (_currentScene != nullptr)
 	{
 		//close previous scene;
 		std::cout << "Deleting previous scene" << std::endl;
-		DeRegisterGameObjects(_currentScene);
+		_currentScene->DeRegisterGameObjects(renderManagerRef, gameLoopRef);
 	}
+
 	_currentScene = t_scene;
 	_currentScene->Initialize();
 	_currentScene->Start();
-	RegisterGameObjects(t_scene);
+	_currentScene->RegisterGameObjects(renderManagerRef, gameLoopRef);
 }
 
 void SceneManager::LoadScene(std::string t_sceneName)
 {
-	Scene* s = GetSceneByName(t_sceneName);
+
+	RenderManager* renderManagerRef = ServiceLocator::Instance()->GetService<RenderManager>();
+	GameLoop* gameLoopRef = ServiceLocator::Instance()->GetService<GameLoop>();
 	if (_currentScene != nullptr)
 	{
-		//close previous scene;
-		std::cout << "Deleting previous scene" << std::endl;
-		DeRegisterGameObjects(_currentScene);
+		std::cout << "Closing previous scene..." << std::endl;
+		_currentScene->DeRegisterGameObjects(renderManagerRef, gameLoopRef);
 	}
-	_currentScene = s;
+	_currentScene = GetSceneByName(t_sceneName);
 	_currentScene->Initialize();
 	_currentScene->Start();
-	RegisterGameObjects(s);
+	_currentScene->RegisterGameObjects(renderManagerRef, gameLoopRef);
 }
 
 void SceneManager::AddScene(Scene* t_scene)

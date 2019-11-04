@@ -5,6 +5,7 @@
 
 bool Button::MouseClick(int button)
 {
+	bool value = false;
 	sf::Mouse::Button btn;
 	switch (button)
 	{
@@ -21,27 +22,27 @@ bool Button::MouseClick(int button)
 		btn = sf::Mouse::Button::Right;
 		break;
 	}
-
-	if (!sf::Mouse::isButtonPressed(btn))
+	if (sf::Mouse::isButtonPressed(btn))
+	{
+		value = false;
+		if (_pressed == false)
+		{
+			_pressed = true;
+			value = true;
+		}
+	}
+	else
 	{
 		_pressed = false;
 	}
-
-	if (sf::Mouse::isButtonPressed(btn) && !_pressed)
-	{
-		_pressed = true;
-		return true;
-	}
-
-	return false;
+	return value;
 }
 
 Button::Button()
 {
-	_spriteComponent = SpriteComponent();
-	_collider = Collider();
 	this->_components.push_back(&_spriteComponent);
 	this->_components.push_back(&_collider);
+	this->_components.push_back(&_textComponent);
 }
 
 Button::~Button()
@@ -50,23 +51,24 @@ Button::~Button()
 
 void Button::Start()
 {
+	_collider.SetSize((sf::Vector2f)_spriteComponent.Sprite().getTexture()->getSize());
 	_spriteComponent.SetPosition(&_position);
 	_collider.SetPosition(&_position);
-	_collider.SetSize((sf::Vector2f)_spriteComponent.Sprite().getTexture()->getSize());
+	_textComponent.Text().setPosition(_position);
 }
 
 void Button::Update()
 {
-	sf::Vector2i  windowSize = ServiceLocator::Instance()->GetService<Game>()->Window().getPosition();
-
-	int x = sf::Mouse::getPosition().x - windowSize.x;
-	int y = sf::Mouse::getPosition().y - windowSize.y;
-
-	bool xCheck = (x > _collider.position().x) && (x < _collider.position().x + _collider.Size().x);
-	bool yCheck = (y > _collider.position().y) && (y < _collider.position().y + _collider.Size().y);
 
 
-	if (MouseClick(0) && xCheck && yCheck) {
+	int x = sf::Mouse::getPosition(ServiceLocator::Instance()->GetService<Game>()->Window()).x;
+	int y = sf::Mouse::getPosition(ServiceLocator::Instance()->GetService<Game>()->Window()).y;
+	bool xCheck = (x >= _collider.Position().x) && (x < _collider.Position().x + _collider.Size().x);
+	bool yCheck = (y > _collider.Position().y) && (y < _collider.Position().y + _collider.Size().y);
+
+
+	if (MouseClick(0) && xCheck && yCheck)
+	{
 		onClick();
 	}
 }

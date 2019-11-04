@@ -10,7 +10,6 @@ public:
 
 	// Inherited via Scene
 	virtual void Update();
-	virtual void Initialize();
 	virtual void SetupGameObjects();
 };
 

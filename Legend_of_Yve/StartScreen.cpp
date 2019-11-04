@@ -4,25 +4,19 @@
 #include "ServiceLocator.h"
 #include "Game.h"
 
-
-void StartScreen::Initialize()
-{
-	SetupGameObjects();
-}
-
-void Click()
-{
-	std::cout << "Hello" << std::endl;
-}
 void StartScreen::SetupGameObjects()
 {
+	sf::Font* font = new sf::Font();
+	font->loadFromFile("../src/Triforce.otf");
 	Button* spriteBtn = new Button();
 	this->AddGameObject(spriteBtn);
-	spriteBtn->SetSprite("../src/button.png");
-
+	spriteBtn->Sprite("../src/button.png");
+	spriteBtn->Text().setString("To Main Menu");
+	spriteBtn->Text().setFillColor(sf::Color::Black);
+	spriteBtn->Text().setFont(*font);
 	sf::Vector2u  windowSize = ServiceLocator::Instance()->GetService<Game>()->Window().getSize();
-	spriteBtn->SetPosition(sf::Vector2f(windowSize.x / 2 - spriteBtn->GetSprite().getTexture()->getSize().x / 2,
-		windowSize.y / 2 - spriteBtn->GetSprite().getTexture()->getSize().y / 2));
+	spriteBtn->SetPosition(sf::Vector2f(windowSize.x / 2 - spriteBtn->Sprite().getTexture()->getSize().x / 2,
+		windowSize.y / 2 - spriteBtn->Sprite().getTexture()->getSize().y / 2));
 
 	spriteBtn->SetClickListener([this]()->void
 		{
@@ -30,6 +24,7 @@ void StartScreen::SetupGameObjects()
 			std::cout << "Button was clicked" << std::endl;
 		});
 }
+
 
 
 

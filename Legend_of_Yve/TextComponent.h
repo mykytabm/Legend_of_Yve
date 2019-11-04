@@ -9,6 +9,7 @@ class TextComponent :
 private:
 	sf::Text _text;
 public:
+	sf::Text& Text() { return _text; };
 	void Start() override;
 	void Update() override;
 

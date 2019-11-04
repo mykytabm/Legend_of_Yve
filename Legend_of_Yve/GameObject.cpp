@@ -74,13 +74,11 @@ void GameObject::DeRegister(GameLoop& t_gameLoop, RenderManager& t_renderManager
 	if (!_persistant)
 	{
 		t_gameLoop.DeRegister(this);
-		while (!_components.empty())
+		for (auto comp : _components)
 		{
-			_components.front()->DeRegister(t_gameLoop, t_renderManager);
-			Component* temp = _components.front();
-			std::cout << "Deleting component" << std::endl;
+			comp->DeRegister(t_gameLoop, t_renderManager);
 			//TODO: Delete component
-			delete temp;
+
 		}
 	}
 }
