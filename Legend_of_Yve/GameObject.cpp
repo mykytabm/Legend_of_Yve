@@ -31,7 +31,12 @@ GameObject::GameObject(std::string t_name) : _name(t_name)
 
 GameObject::~GameObject()
 {
+	//TODO: this triggers breakpoint
 
+	//for (auto component : _components)
+	//{
+	//	delete component;
+	//}
 }
 
 

@@ -17,7 +17,6 @@ protected:
 	std::string _id;
 public:
 	virtual void Initialize() { std::cout << "Initializing " << _id << std::endl; SetupGameObjects(); };
-	virtual void Update() = 0;
 	virtual void SetupGameObjects() = 0;
 
 	Scene() { };

@@ -9,7 +9,6 @@ public:
 	~StartScreen();
 
 	// Inherited via Scene
-	virtual void Update();
 	virtual void SetupGameObjects();
 };
 

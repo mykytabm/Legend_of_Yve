@@ -54,7 +54,7 @@ void RenderManager::Render()
 
 	for (int i = 0; i < _renderComponents.size(); ++i)
 	{
-		_renderComponents[i]->Render(*_gameWindowRef);
+			_renderComponents[i]->Render(*_gameWindowRef);
 	}
 
 	_gameWindowRef->display();

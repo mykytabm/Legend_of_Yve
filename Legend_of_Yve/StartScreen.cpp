@@ -6,38 +6,37 @@
 
 void StartScreen::SetupGameObjects()
 {
-	sf::Font* font = new sf::Font();
-	font->loadFromFile("../src/Arial.ttf");
-	Button* spriteBtn = new Button();
-	this->AddGameObject(spriteBtn);
-	spriteBtn->Sprite("../src/button.png");
-	spriteBtn->Text().setString("To Main Menu");
-	spriteBtn->Text().setFillColor(sf::Color::White);
-	spriteBtn->Text().setFont(*font);
 	sf::Vector2u  windowSize = ServiceLocator::Instance()->GetService<Game>()->Window().getSize();
-	spriteBtn->SetPosition(sf::Vector2f(windowSize.x / 2 - spriteBtn->Sprite().getTexture()->getSize().x / 2,
-		windowSize.y / 2 - spriteBtn->Sprite().getTexture()->getSize().y / 2));
 
-	spriteBtn->SetClickListener([this]()->void
+	Button* startBtn = new Button();
+	startBtn->GetComponent<TextComponent>().Font("../src/Arial.ttf");
+	startBtn->GetComponent<SpriteComponent>().Sprite("../src/button.png");
+	startBtn->GetComponent<TextComponent>().Text().setString("Start");
+	startBtn->GetComponent<TextComponent>().Text().setFillColor(sf::Color::White);
+	startBtn->SetPosition(sf::Vector2f(
+		windowSize.x / 2 - startBtn->Sprite().getTexture()->getSize().x / 2,
+		windowSize.y / 2 - startBtn->Sprite().getTexture()->getSize().y / 2
+	));
+
+	startBtn->SetClickListener([this]()->void
 		{
 			ServiceLocator::Instance()->GetService<SceneManager>()->LoadScene("MainMenu");
 			std::cout << "Button was clicked" << std::endl;
 		});
+
+	this->AddGameObject(startBtn);
+
 }
-
-
-
-
 
 StartScreen::~StartScreen()
 {
-
+	for (auto go : _gameObjects)
+	{
+		delete go;
+	}
+	_gameObjects.clear();
 }
 
-void StartScreen::Update()
-{
-
-}
 
 
 

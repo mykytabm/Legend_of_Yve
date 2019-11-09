@@ -23,7 +23,6 @@ public:
 	GameObject() { };
 	virtual void Start();
 	virtual void Update();
-	//virtual void HandleEvent(const sf::Event& t_event) { };
 	GameObject(const std::string t_name);
 	virtual ~GameObject();
 	bool Active() const { return _isActive; };

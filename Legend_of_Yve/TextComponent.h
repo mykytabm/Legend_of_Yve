@@ -8,7 +8,11 @@ class TextComponent :
 {
 private:
 	sf::Text _text;
+	sf::Font _font;
 public:
+	TextComponent();
+	~TextComponent();
+	void Font(std::string file);
 	sf::Text& Text() { return _text; };
 	void Start() override;
 	void Update() override;
