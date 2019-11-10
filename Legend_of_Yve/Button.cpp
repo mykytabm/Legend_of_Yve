@@ -38,8 +38,9 @@ bool Button::MouseClick(int button)
 	return value;
 }
 
-Button::Button()
+Button::Button(std::string t_name)
 {
+	_name = t_name;
 	this->_components.push_back(&_spriteComponent);
 	this->_components.push_back(&_collider);
 	this->_components.push_back(&_textComponent);
@@ -51,7 +52,6 @@ Button::~Button()
 
 void Button::Start()
 {
-	_collider.SetSize((sf::Vector2f)_spriteComponent.Sprite().getTexture()->getSize());
 	_spriteComponent.SetPosition(&_position);
 	_collider.SetPosition(&_position);
 	_textComponent.Text().setPosition(_position + sf::Vector2f(20, 2));
@@ -59,6 +59,7 @@ void Button::Start()
 
 void Button::Update()
 {
+
 	int x = sf::Mouse::getPosition(ServiceLocator::Instance()->GetService<Game>()->Window()).x;
 	int y = sf::Mouse::getPosition(ServiceLocator::Instance()->GetService<Game>()->Window()).y;
 	bool xCheck = (x >= _collider.Position().x) && (x < _collider.Position().x + _collider.Size().x);

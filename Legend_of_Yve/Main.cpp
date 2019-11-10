@@ -10,13 +10,10 @@ int main()
 
 
 
-	StartScreen startScreen("StartScreen");
 	MainMenu menu("MainMenu");
 
 
-	std::list<Scene*> yveGameScenes = { &startScreen,&menu };
-
-
+	std::list<Scene*> yveGameScenes = { &menu };
 	game.Initialize(yveGameScenes);
 	game.Run();
 	game.Exit();

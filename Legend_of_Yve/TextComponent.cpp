@@ -8,8 +8,7 @@ TextComponent::TextComponent()
 }
 
 TextComponent::~TextComponent()
-{
-}
+{ }
 
 void TextComponent::Font(std::string file)
 {
@@ -17,12 +16,10 @@ void TextComponent::Font(std::string file)
 }
 
 void TextComponent::Start()
-{
-}
+{ }
 
 void TextComponent::Update()
-{
-}
+{ }
 
 
 void TextComponent::Render(sf::RenderWindow& t_window) const

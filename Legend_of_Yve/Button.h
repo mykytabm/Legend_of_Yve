@@ -25,7 +25,7 @@ public:
 	void Sprite(const std::string t_imagePath) { _spriteComponent.Sprite(t_imagePath); };
 	sf::Sprite& Sprite() { return _spriteComponent.Sprite(); };
 	sf::Text& Text() { return _textComponent.Text(); };
-	Button();
+	Button(std::string t_name);
 	~Button();
 	void Start() override;
 	void Update() override;

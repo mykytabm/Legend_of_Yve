@@ -12,15 +12,17 @@ void MainMenu::SetupGameObjects()
 {
 	sf::Vector2u  windowSize = ServiceLocator::Instance()->GetService<Game>()->Window().getSize();
 
+	Canvas* c = new Canvas("Menu");
+	Button* playBtn = new Button("Play");
+	Button* quitBtn = new Button("Quit");
+	Button* eraseDataBtn = new Button("Erase Data");
 
-	Canvas* c = new Canvas();
-
-	Button* playBtn = new Button();
 
 	playBtn->Sprite("../src/button.png");
 	playBtn->Text().setFillColor(sf::Color::White);
 	playBtn->Text().setString("Start Game");
-	playBtn->GetComponent<TextComponent>().Font("../src/Arial.ttf");
+	playBtn->GetComponent<Collider>()->SetSize((sf::Vector2f)playBtn->Sprite().getTexture()->getSize());
+	playBtn->GetComponent<TextComponent>()->Font("../src/Arial.ttf");
 	playBtn->SetPosition(sf::Vector2f(
 		windowSize.x - 30 - playBtn->Sprite().getTexture()->getSize().x,
 		200 + playBtn->Sprite().getTexture()->getSize().y / 2)
@@ -28,28 +30,28 @@ void MainMenu::SetupGameObjects()
 
 	playBtn->SetClickListener([this]()->void
 		{
-
+			this->GetGameObject("Menu")->SetActive(!this->GetGameObject("Menu")->Active());
 		});
 
-	Button* eraseDataBtn = new Button();
 	eraseDataBtn->Sprite("../src/button.png");
 	eraseDataBtn->Text().setFillColor(sf::Color::White);
 	eraseDataBtn->Text().setString("Erase Data");
-	eraseDataBtn->GetComponent<TextComponent>().Font("../src/Arial.ttf");
+	eraseDataBtn->GetComponent<Collider>()->SetSize((sf::Vector2f)eraseDataBtn->Sprite().getTexture()->getSize());
+	eraseDataBtn->GetComponent<TextComponent>()->Font("../src/Arial.ttf");
 	eraseDataBtn->SetPosition(sf::Vector2f(windowSize.x - 30 - eraseDataBtn->Sprite().getTexture()->getSize().x,
 		270 + eraseDataBtn->Sprite().getTexture()->getSize().y / 2));
 
 	eraseDataBtn->SetClickListener([this]()->void
 		{
-
+			std::cout << "Erase Data button click" << std::endl;
 		});
 
-	Button* quitBtn = new Button();
 
 	quitBtn->Sprite("../src/button.png");
 	quitBtn->Text().setFillColor(sf::Color::White);
 	quitBtn->Text().setString("Quit");
-	quitBtn->GetComponent<TextComponent>().Font("../src/Arial.ttf");
+	quitBtn->GetComponent<Collider>()->SetSize((sf::Vector2f)quitBtn->Sprite().getTexture()->getSize());
+	quitBtn->GetComponent<TextComponent>()->Font("../src/Arial.ttf");
 	quitBtn->SetPosition(sf::Vector2f(
 		windowSize.x - 30 - quitBtn->Sprite().getTexture()->getSize().x,
 		340 + quitBtn->Sprite().getTexture()->getSize().y / 2)
@@ -57,9 +59,12 @@ void MainMenu::SetupGameObjects()
 
 	quitBtn->SetClickListener([this]()->void
 		{
-
+			std::cout << "Quit button click" << std::endl;
 		});
 
+	c->AddChild(eraseDataBtn);
+
+	this->AddGameObject(c);
 	this->AddGameObject(playBtn);
 	this->AddGameObject(eraseDataBtn);
 	this->AddGameObject(quitBtn);

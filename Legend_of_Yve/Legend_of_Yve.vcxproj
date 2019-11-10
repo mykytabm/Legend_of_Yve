@@ -179,7 +179,6 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Service.cpp" />
     <ClCompile Include="ServiceLocator.cpp" />
-    <ClCompile Include="StartScreen.cpp" />
     <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="UIElement.cpp" />
   </ItemGroup>
@@ -199,7 +198,6 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Service.h" />
     <ClInclude Include="ServiceLocator.h" />
-    <ClInclude Include="StartScreen.h" />
     <ClInclude Include="TextComponent.h" />
     <ClInclude Include="UIElement.h" />
   </ItemGroup>

@@ -9,14 +9,16 @@
 void GameLoop::Update()
 {
 
-	for (int i = 0; i < _gameObjects.size(); ++i)
+	for (auto gameObject : _gameObjects)
 	{
-		_gameObjects[i]->Update();
+		if (gameObject->Active())
+			gameObject->Update();
 	}
 
-	for (int i = 0; i < _components.size(); ++i)
+	for (auto component : _components)
 	{
-		_components[i]->Update();
+		if (component->Active())
+			component->Update();
 	}
 }
 

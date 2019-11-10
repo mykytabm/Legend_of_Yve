@@ -1,37 +1,18 @@
 #include "GameObject.h"
-#include "Component.h"
 #include <typeinfo>
 #include "GameLoop.h"
 #include <iostream>
 
+void GameObject::Start() { }
+
+void GameObject::Update() { }
 
 
-void GameObject::StartComponents()
-{
-
-	for (int i = 0; i < _components.size(); ++i)
-	{
-		_components[i]->Start();
-	}
-}
-
-void GameObject::Start()
-{
-}
-
-void GameObject::Update()
-{
-
-}
-
-GameObject::GameObject(std::string t_name) : _name(t_name)
-{
-
-}
+GameObject::GameObject(std::string t_name) : _name(t_name) { }
 
 GameObject::~GameObject()
 {
-	//TODO: this triggers breakpoint
+	//TODO: fix because this triggers breakpoint
 
 	//for (auto component : _components)
 	//{
@@ -39,23 +20,28 @@ GameObject::~GameObject()
 	//}
 }
 
-
-
-template<typename T>
-void GameObject::AddComponent()
+void GameObject::SetActive(bool value)
 {
-	if (ContainsComponent(T) == false)
+	this->_active = value;
+	for (auto child : _children)
 	{
-		auto* component = new T();
-		static_cast<Component>(component).SetGameObject(this);
-		_components.push_back(component);
+		child->SetActive(value);
+	}
+
+	for (auto component : _components)
+	{
+		component->SetActive(value);
 	}
 }
 
+void GameObject::AddChild(GameObject* t_child)
+{
+	_children.push_back(t_child);
+}
 
 void GameObject::AddComponent(Component* t_component)
 {
-	if (ContainsComponent(t_component) == false)
+	if (!ContainsComponent(t_component))
 	{
 		_components.push_back(t_component);
 	}
@@ -63,7 +49,7 @@ void GameObject::AddComponent(Component* t_component)
 
 void GameObject::Register(GameLoop& t_gameLoop, RenderManager& t_renderManager)
 {
-	if (_isActive)
+	if (_active)
 	{
 		t_gameLoop.Register(this);
 		for (int i = 0; i < _components.size(); ++i)
@@ -71,7 +57,6 @@ void GameObject::Register(GameLoop& t_gameLoop, RenderManager& t_renderManager)
 			_components[i]->Register(t_gameLoop, t_renderManager);
 		}
 	}
-
 }
 
 void GameObject::DeRegister(GameLoop& t_gameLoop, RenderManager& t_renderManager)
@@ -83,12 +68,17 @@ void GameObject::DeRegister(GameLoop& t_gameLoop, RenderManager& t_renderManager
 		{
 			comp->DeRegister(t_gameLoop, t_renderManager);
 			//TODO: Delete component
-
 		}
 	}
 }
 
-
+void GameObject::StartComponents()
+{
+	for (int i = 0; i < _components.size(); ++i)
+	{
+		_components[i]->Start();
+	}
+}
 
 bool GameObject::ContainsComponent(Component* t_component) const
 {
@@ -101,3 +91,4 @@ bool GameObject::ContainsComponent(Component* t_component) const
 	}
 	return false;
 }
+
