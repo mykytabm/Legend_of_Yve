@@ -7,10 +7,11 @@ class RenderManager;
 class Component
 {
 private:
-	GameObject* _owner;
+protected:
 	bool _active = true;
+	GameObject* _owner;
 public:
-	inline void SetGameObject(GameObject* t_gameObject) { _owner = t_gameObject; };
+	void SetGameObject(GameObject* t_gameObject) { _owner = t_gameObject; };
 
 	Component() { };
 	virtual ~Component() { };

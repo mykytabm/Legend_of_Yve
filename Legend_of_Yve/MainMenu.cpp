@@ -12,10 +12,44 @@ void MainMenu::SetupGameObjects()
 {
 	sf::Vector2u  windowSize = ServiceLocator::Instance()->GetService<Game>()->Window().getSize();
 
-	Canvas* c = new Canvas("Menu");
+
+	//character menu;
+	Canvas* characterMenuRoot = new Canvas("Character Menu");
+	GameObject* background = new GameObject("character menu background");
+	background->AddComponent<SpriteComponent>()->Sprite("../src/background.png");
+	background->GetComponent<SpriteComponent>()->SetPosition(sf::Vector2f(400, 100));
+
+	//main menu
+	Canvas* menuRoot = new Canvas("Main Menu");
+	GameObject* menuBackground = new GameObject("Main Menu Background");
+	menuBackground->AddComponent<SpriteComponent>()->Sprite("../src/menu_background.png");
+	menuBackground->GetComponent<SpriteComponent>()->Sprite().setTextureRect(sf::IntRect(0, 0, windowSize.x, windowSize.y));
 	Button* playBtn = new Button("Play");
 	Button* quitBtn = new Button("Quit");
 	Button* eraseDataBtn = new Button("Erase Data");
+
+
+	characterMenuRoot->AddChild(background);
+
+	menuRoot->AddChild(playBtn);
+	menuRoot->AddChild(eraseDataBtn);
+	menuRoot->AddChild(quitBtn);
+
+	this->AddGameObject(characterMenuRoot);
+	this->AddGameObject(menuRoot);
+
+	//order matters: layers form from top to bottom
+
+	this->AddGameObject(menuBackground);
+	this->AddGameObject(playBtn);
+	this->AddGameObject(quitBtn);
+	this->AddGameObject(eraseDataBtn);
+	this->AddGameObject(background);
+
+
+
+
+	characterMenuRoot->SetActive(false);
 
 
 	playBtn->Sprite("../src/button.png");
@@ -30,7 +64,10 @@ void MainMenu::SetupGameObjects()
 
 	playBtn->SetClickListener([this]()->void
 		{
-			this->GetGameObject("Menu")->SetActive(!this->GetGameObject("Menu")->Active());
+			std::cout << "play clicked" << std::endl;
+			this->GetGameObject("Character Menu")->SetActive(true);
+			this->GetGameObject("Main Menu")->SetActive(false);
+
 		});
 
 	eraseDataBtn->Sprite("../src/button.png");
@@ -43,7 +80,6 @@ void MainMenu::SetupGameObjects()
 
 	eraseDataBtn->SetClickListener([this]()->void
 		{
-			std::cout << "Erase Data button click" << std::endl;
 		});
 
 
@@ -59,13 +95,9 @@ void MainMenu::SetupGameObjects()
 
 	quitBtn->SetClickListener([this]()->void
 		{
-			std::cout << "Quit button click" << std::endl;
+			ServiceLocator::Instance()->GetService<Game>()->Exit();
 		});
 
-	c->AddChild(eraseDataBtn);
 
-	this->AddGameObject(c);
-	this->AddGameObject(playBtn);
-	this->AddGameObject(eraseDataBtn);
-	this->AddGameObject(quitBtn);
+
 }

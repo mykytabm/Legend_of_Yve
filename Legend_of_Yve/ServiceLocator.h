@@ -62,6 +62,7 @@ T* ServiceLocator::FindService()
 			return cast_service;
 		}
 	}
+	return nullptr;
 }
 
 

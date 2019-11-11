@@ -22,6 +22,7 @@ GameObject::~GameObject()
 
 void GameObject::SetActive(bool value)
 {
+	std::cout << "set active" << value << std::endl;
 	this->_active = value;
 	for (auto child : _children)
 	{
@@ -32,6 +33,16 @@ void GameObject::SetActive(bool value)
 	{
 		component->SetActive(value);
 	}
+}
+
+void GameObject::SetPosition(const sf::Vector2f t_newPosition)
+{
+	this->_position = t_newPosition;
+	for (auto child : _children)
+	{
+		child->SetPosition((child->GetPosition()) + t_newPosition);
+	}
+
 }
 
 void GameObject::AddChild(GameObject* t_child)
@@ -49,13 +60,10 @@ void GameObject::AddComponent(Component* t_component)
 
 void GameObject::Register(GameLoop& t_gameLoop, RenderManager& t_renderManager)
 {
-	if (_active)
+	t_gameLoop.Register(this);
+	for (int i = 0; i < _components.size(); ++i)
 	{
-		t_gameLoop.Register(this);
-		for (int i = 0; i < _components.size(); ++i)
-		{
-			_components[i]->Register(t_gameLoop, t_renderManager);
-		}
+		_components[i]->Register(t_gameLoop, t_renderManager);
 	}
 }
 
