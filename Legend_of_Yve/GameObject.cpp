@@ -22,7 +22,6 @@ GameObject::~GameObject()
 
 void GameObject::SetActive(bool value)
 {
-	std::cout << "set active" << value << std::endl;
 	this->_active = value;
 	for (auto child : _children)
 	{
@@ -42,7 +41,6 @@ void GameObject::SetPosition(const sf::Vector2f t_newPosition)
 	{
 		child->SetPosition((child->GetPosition()) + t_newPosition);
 	}
-
 }
 
 void GameObject::AddChild(GameObject* t_child)

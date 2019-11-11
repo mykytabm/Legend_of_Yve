@@ -19,6 +19,8 @@ void MainMenu::SetupGameObjects()
 	background->AddComponent<SpriteComponent>()->Sprite("../src/background.png");
 	background->GetComponent<SpriteComponent>()->SetPosition(sf::Vector2f(400, 100));
 
+	Button* cancelBtn = new Button("Cancel Character Menu");
+
 	//main menu
 	Canvas* menuRoot = new Canvas("Main Menu");
 	GameObject* menuBackground = new GameObject("Main Menu Background");
@@ -30,6 +32,10 @@ void MainMenu::SetupGameObjects()
 
 
 	characterMenuRoot->AddChild(background);
+	characterMenuRoot->AddChild(cancelBtn);
+
+	characterMenuRoot->SetActive(false);
+
 
 	menuRoot->AddChild(playBtn);
 	menuRoot->AddChild(eraseDataBtn);
@@ -39,17 +45,30 @@ void MainMenu::SetupGameObjects()
 	this->AddGameObject(menuRoot);
 
 	//order matters: layers form from top to bottom
-
 	this->AddGameObject(menuBackground);
 	this->AddGameObject(playBtn);
 	this->AddGameObject(quitBtn);
 	this->AddGameObject(eraseDataBtn);
 	this->AddGameObject(background);
+	this->AddGameObject(cancelBtn);
 
 
 
 
-	characterMenuRoot->SetActive(false);
+
+
+	cancelBtn->Sprite("../src/small_button.png");
+	cancelBtn->Text().setFillColor(sf::Color::White);
+	cancelBtn->Text().setString("Cancel");
+	cancelBtn->GetComponent<Collider>()->SetSize((sf::Vector2f)cancelBtn->Sprite().getTexture()->getSize());
+	cancelBtn->GetComponent<TextComponent>()->Font("../src/Arial.ttf");
+	cancelBtn->SetPosition(sf::Vector2f(410, 440));
+
+	cancelBtn->SetClickListener([this]()->void
+		{
+			this->GetGameObject("Character Menu")->SetActive(false);
+			this->GetGameObject("Main Menu")->SetActive(true);
+		});
 
 
 	playBtn->Sprite("../src/button.png");
