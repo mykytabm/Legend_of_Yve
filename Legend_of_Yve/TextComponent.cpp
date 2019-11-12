@@ -2,6 +2,8 @@
 #include <iostream>;
 
 
+
+
 TextComponent::TextComponent()
 {
 	_text.setFont(_font);
