@@ -20,9 +20,9 @@ protected:
 	std::vector<GameObject*> _children;
 	std::string _name;
 	sf::Vector2f _position = sf::Vector2f(0, 0);
+	GameObject() { };
 
 public:
-	GameObject() { };
 	GameObject(const std::string t_name);
 	virtual ~GameObject();
 	virtual void Start();
@@ -31,7 +31,7 @@ public:
 	void SetActive(bool value);
 	std::vector<Component*> Components() { return _components; };
 	std::string GetName() const { return  _name; };
-	sf::Vector2f GetPosition() { return _position; };
+	sf::Vector2f& GetPosition() { return _position; };
 
 
 	void SetPosition(const sf::Vector2f t_newPosition);

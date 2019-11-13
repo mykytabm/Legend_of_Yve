@@ -68,7 +68,7 @@ void Button::Update()
 
 	if (MouseClick(0) && xCheck && yCheck)
 	{
-		if(onClick!=NULL)
-		onClick();
+		if (onClick != NULL)
+			onClick();
 	}
 }

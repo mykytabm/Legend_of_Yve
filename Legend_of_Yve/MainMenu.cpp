@@ -41,17 +41,19 @@ void MainMenu::SetupGameObjects()
 	Button* addStrengthBtn = new Button("Add Strength");
 	Button* subtractStrengthBtn = new Button("Subtract Strength");
 
-	//GameObject* agility = new GameObject;
-	//agility->AddComponent<TextComponent>()->Text().setString();
 
-	//GameObject* wits = new GameObject;
-	//wits->AddComponent<TextComponent>()->Text().setString();
+	GameObject* agilityPointsText = new GameObject("Agility Points");
+	agilityPointsText->AddComponent<TextComponent>();
 
-	//Button* addAgilityBtn = new Button("Add Agility");
-	//Button* subtractAgilityBtn = new Button("Subtract Agility");
+	Button* addAgilityBtn = new Button("Add Agility");
+	Button* subtractAgilityBtn = new Button("Subtract Agility");
 
-	//Button* addWitsBtn = new Button("Add Wits");
-	//Button* subtractWitsBtn = new Button("Subtract Wits");
+	GameObject* witsPointsText = new GameObject("Wits Points");
+	witsPointsText->AddComponent<TextComponent>()->Text();
+
+
+	Button* addWitsBtn = new Button("Add Wits");
+	Button* subtractWitsBtn = new Button("Subtract Wits");
 
 
 
@@ -69,15 +71,26 @@ void MainMenu::SetupGameObjects()
 	characterMenuRoot->AddChild(cancelBtn);
 	characterMenuRoot->AddChild(startGameBtn);
 	characterMenuRoot->AddChild(availablePointsText);
+
 	characterMenuRoot->AddChild(strengthPointsText);
 	characterMenuRoot->AddChild(addStrengthBtn);
 	characterMenuRoot->AddChild(subtractStrengthBtn);
+
+	characterMenuRoot->AddChild(agilityPointsText);
+	characterMenuRoot->AddChild(addAgilityBtn);
+	characterMenuRoot->AddChild(subtractAgilityBtn);
+
+	characterMenuRoot->AddChild(witsPointsText);
+	characterMenuRoot->AddChild(addWitsBtn);
+	characterMenuRoot->AddChild(subtractWitsBtn);
+
 
 	characterMenuRoot->SetActive(false);
 
 	menuRoot->AddChild(CreateCharacterBtn);
 	menuRoot->AddChild(eraseDataBtn);
 	menuRoot->AddChild(quitBtn);
+
 
 	AddGameObject(characterMenuRoot);
 	AddGameObject(menuRoot);
@@ -87,14 +100,23 @@ void MainMenu::SetupGameObjects()
 	AddGameObject(CreateCharacterBtn);
 	AddGameObject(quitBtn);
 	AddGameObject(eraseDataBtn);
+
 	AddGameObject(background);
 	AddGameObject(cancelBtn);
 	AddGameObject(startGameBtn);
+
 	AddGameObject(availablePointsText);
 	AddGameObject(strengthPointsText);
 	AddGameObject(addStrengthBtn);
 	AddGameObject(subtractStrengthBtn);
 
+	AddGameObject(agilityPointsText);
+	AddGameObject(addAgilityBtn);
+	AddGameObject(subtractAgilityBtn);
+
+	AddGameObject(witsPointsText);
+	AddGameObject(addWitsBtn);
+	AddGameObject(subtractWitsBtn);
 
 	availablePointsText->GetComponent<TextComponent>()->Font("../src/Arial.ttf");
 	availablePointsText->GetComponent<TextComponent>()->Text().setFillColor(sf::Color::Black);
@@ -105,11 +127,11 @@ void MainMenu::SetupGameObjects()
 	strengthPointsText->GetComponent<TextComponent>()->Font("../src/Arial.ttf");
 	strengthPointsText->GetComponent<TextComponent>()->Text().setFillColor(sf::Color::Black);
 	strengthPointsText->GetComponent<TextComponent>()->Text().setString("Strength: " + std::to_string(strengthPoints));
-	strengthPointsText->GetComponent<TextComponent>()->Text().setPosition(sf::Vector2f(410, 130));
+	strengthPointsText->GetComponent<TextComponent>()->Text().setPosition(sf::Vector2f(410, 140));
 
 	addStrengthBtn->Sprite("../src/add.png");
 	addStrengthBtn->GetComponent<Collider>()->SetSize((sf::Vector2f)addStrengthBtn->Sprite().getTexture()->getSize());
-	addStrengthBtn->SetPosition(sf::Vector2f(570, 139));
+	addStrengthBtn->SetPosition(sf::Vector2f(570, 145));
 
 	addStrengthBtn->SetClickListener([this]()->void
 		{
@@ -126,11 +148,11 @@ void MainMenu::SetupGameObjects()
 
 	subtractStrengthBtn->Sprite("../src/subtract.png");
 	subtractStrengthBtn->GetComponent<Collider>()->SetSize((sf::Vector2f)subtractStrengthBtn->Sprite().getTexture()->getSize());
-	subtractStrengthBtn->SetPosition(sf::Vector2f(600, 139));
+	subtractStrengthBtn->SetPosition(sf::Vector2f(600, 145));
 
 	subtractStrengthBtn->SetClickListener([this]()->void
 		{
-			if (availablePoints < 6)
+			if (strengthPoints > 1)
 			{
 				availablePoints++;
 				strengthPoints--;
@@ -141,6 +163,85 @@ void MainMenu::SetupGameObjects()
 			}
 		});
 
+	agilityPointsText->GetComponent<TextComponent>()->Font("../src/Arial.ttf");
+	agilityPointsText->GetComponent<TextComponent>()->Text().setFillColor(sf::Color::Black);
+	agilityPointsText->GetComponent<TextComponent>()->Text().setString("Agility: " + std::to_string(agilityPoints));
+	agilityPointsText->GetComponent<TextComponent>()->Text().setPosition(sf::Vector2f(410, 180));
+
+
+	addAgilityBtn->Sprite("../src/add.png");
+	addAgilityBtn->GetComponent<Collider>()->SetSize((sf::Vector2f)addAgilityBtn->Sprite().getTexture()->getSize());
+	addAgilityBtn->SetPosition(sf::Vector2f(570, 185));
+
+	addAgilityBtn->SetClickListener([this]()->void
+		{
+			if (availablePoints > 0)
+			{
+				availablePoints--;
+				agilityPoints++;
+				GetGameObject("Agility Points")->GetComponent<TextComponent>()->
+					Text().setString("Agility: " + std::to_string(agilityPoints));
+				GetGameObject("Available Points")->GetComponent<TextComponent>()->
+					Text().setString("Available points: " + std::to_string(availablePoints));
+			}
+		});
+
+	subtractAgilityBtn->Sprite("../src/subtract.png");
+	subtractAgilityBtn->GetComponent<Collider>()->SetSize((sf::Vector2f)subtractAgilityBtn->Sprite().getTexture()->getSize());
+	subtractAgilityBtn->SetPosition(sf::Vector2f(600, 185));
+
+	subtractAgilityBtn->SetClickListener([this]()->void
+		{
+			if (agilityPoints > 0)
+			{
+				availablePoints++;
+				agilityPoints--;
+				GetGameObject("Agility Points")->GetComponent<TextComponent>()->
+					Text().setString("Agility: " + std::to_string(agilityPoints));
+				GetGameObject("Available Points")->GetComponent<TextComponent>()->
+					Text().setString("Available points: " + std::to_string(availablePoints));
+			}
+		});
+
+	witsPointsText->GetComponent<TextComponent>()->Font("../src/Arial.ttf");
+	witsPointsText->GetComponent<TextComponent>()->Text().setFillColor(sf::Color::Black);
+	witsPointsText->GetComponent<TextComponent>()->Text().setString("Wits: " + std::to_string(witsPoints));
+	witsPointsText->GetComponent<TextComponent>()->Text().setPosition(sf::Vector2f(410, 220));
+
+
+	addWitsBtn->Sprite("../src/add.png");
+	addWitsBtn->GetComponent<Collider>()->SetSize((sf::Vector2f)addWitsBtn->Sprite().getTexture()->getSize());
+	addWitsBtn->SetPosition(sf::Vector2f(570, 225));
+
+	addWitsBtn->SetClickListener([this]()->void
+		{
+			if (availablePoints > 0)
+			{
+				availablePoints--;
+				witsPoints++;
+				GetGameObject("Wits Points")->GetComponent<TextComponent>()->
+					Text().setString("Wits: " + std::to_string(witsPoints));
+				GetGameObject("Available Points")->GetComponent<TextComponent>()->
+					Text().setString("Available points: " + std::to_string(availablePoints));
+			}
+		});
+
+	subtractWitsBtn->Sprite("../src/subtract.png");
+	subtractWitsBtn->GetComponent<Collider>()->SetSize((sf::Vector2f)subtractWitsBtn->Sprite().getTexture()->getSize());
+	subtractWitsBtn->SetPosition(sf::Vector2f(600, 225));
+
+	subtractWitsBtn->SetClickListener([this]()->void
+		{
+			if (witsPoints > 1)
+			{
+				availablePoints++;
+				witsPoints--;
+				GetGameObject("Wits Points")->GetComponent<TextComponent>()->
+					Text().setString("Wits: " + std::to_string(witsPoints));
+				GetGameObject("Available Points")->GetComponent<TextComponent>()->
+					Text().setString("Available points: " + std::to_string(availablePoints));
+			}
+		});
 
 	cancelBtn->Sprite("../src/small_button.png");
 	cancelBtn->Text().setFillColor(sf::Color::White);
