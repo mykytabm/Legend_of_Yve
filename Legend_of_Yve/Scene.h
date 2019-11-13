@@ -16,21 +16,19 @@ protected:
 	std::string _id;
 public:
 	Scene() { };
+	Scene(std::string t_id);
 	virtual ~Scene() { };
-	Scene(std::string t_id) { _id = t_id; };
-
-	virtual void Initialize() { std::cout << "Initializing " << _id << std::endl; SetupGameObjects(); };
-	virtual void SetupGameObjects() = 0;
-	virtual void Start() { for (int i = 0; i < _gameObjects.size(); ++i) { _gameObjects[i]->Start(); _gameObjects[i]->StartComponents(); } };
 
 	std::string Name() { return _id; };
 	GameObject* GetGameObject(std::string t_name);
-	std::vector<GameObject*> GameObjects() { return _gameObjects; };
+	std::vector<GameObject*> GameObjects();
+
 	void AddGameObject(GameObject* t_GameObject);
 	void RegisterGameObjects(RenderManager* t_renderManager, GameLoop* t_gameLoop);
 	void DeRegisterGameObjects(RenderManager* t_renderManager, GameLoop* t_gameLoop);
 
-
-
+	virtual void Initialize();
+	virtual void Start();
+	virtual void SetupGameObjects() = 0;
 };
 

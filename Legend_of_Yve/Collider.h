@@ -10,15 +10,14 @@ private:
 	sf::Vector2f _position;
 
 public:
-
-	sf::Vector2f Size() const { return _size; };
-	void SetSize(sf::Vector2f t_size) { _size = t_size; };
-	sf::Vector2f Position() const { return _position; };
-	void SetPosition(sf::Vector2f t_position) { _position = t_position; };
-	void SetPosition(sf::Vector2f* t_position) { _position = *t_position; };
-	Collider() { };
 	~Collider();
 
+	sf::Vector2f Size() const;
+	sf::Vector2f Position() const;
+
+	void SetSize(const sf::Vector2f t_size);
+	void SetPosition(const sf::Vector2f t_position);
+	void SetPosition(sf::Vector2f* t_position);
 	void Start() override;
 	void Update() override;
 

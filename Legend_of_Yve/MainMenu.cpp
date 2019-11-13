@@ -4,120 +4,54 @@
 #include "Canvas.h"
 
 
-void MainMenu::Update()
+MainMenu::MainMenu(const std::string t_id)
 {
-}
+	_id = t_id;
+};
+
+void MainMenu::Update() { }
 
 int availablePoints = 6;
 int strengthPoints = 1;
 int agilityPoints = 0;
 int witsPoints = 1;
+
 void MainMenu::SetupGameObjects()
 {
 	sf::Vector2u  windowSize = ServiceLocator::Instance()->GetService<Game>()->Window().getSize();
 
-
-	//character menu;
+	//=======================character menu canvas====================================
 	Canvas* characterMenuRoot = new Canvas("Character Menu");
+
+	Button* cancelBtn = new Button("Cancel Character Menu");
+	Button* startGameBtn = new Button("Start Game");
 	GameObject* background = new GameObject("character menu background");
 	background->AddComponent<SpriteComponent>()->Sprite("../src/background.png");
 	background->GetComponent<SpriteComponent>()->SetPosition(sf::Vector2f(400, 100));
 
-	Button* cancelBtn = new Button("Cancel Character Menu");
 
-	Button* startGameBtn = new Button("Start Game");
-
-	//character editor buttons
-
-
-
-
+	//stats editor buttons
 	GameObject* availablePointsText = new GameObject("Available Points");
 	availablePointsText->AddComponent<TextComponent>();
 
 	GameObject* strengthPointsText = new GameObject("Strength Points");
 	strengthPointsText->AddComponent<TextComponent>();
 
-	Button* addStrengthBtn = new Button("Add Strength");
-	Button* subtractStrengthBtn = new Button("Subtract Strength");
-
-
 	GameObject* agilityPointsText = new GameObject("Agility Points");
 	agilityPointsText->AddComponent<TextComponent>();
-
-	Button* addAgilityBtn = new Button("Add Agility");
-	Button* subtractAgilityBtn = new Button("Subtract Agility");
 
 	GameObject* witsPointsText = new GameObject("Wits Points");
 	witsPointsText->AddComponent<TextComponent>()->Text();
 
-
+	Button* addStrengthBtn = new Button("Add Strength");
+	Button* addAgilityBtn = new Button("Add Agility");
 	Button* addWitsBtn = new Button("Add Wits");
+
+	Button* subtractStrengthBtn = new Button("Subtract Strength");
+	Button* subtractAgilityBtn = new Button("Subtract Agility");
 	Button* subtractWitsBtn = new Button("Subtract Wits");
 
-
-
-	//main menu
-	Canvas* menuRoot = new Canvas("Main Menu");
-	GameObject* menuBackground = new GameObject("Main Menu Background");
-	menuBackground->AddComponent<SpriteComponent>()->Sprite("../src/menu_background.png");
-	menuBackground->GetComponent<SpriteComponent>()->Sprite().setTextureRect(sf::IntRect(0, 0, windowSize.x, windowSize.y));
-	Button* CreateCharacterBtn = new Button("Open Character Menu");
-	Button* quitBtn = new Button("Quit");
-	Button* eraseDataBtn = new Button("Erase Data");
-
-
-	characterMenuRoot->AddChild(background);
-	characterMenuRoot->AddChild(cancelBtn);
-	characterMenuRoot->AddChild(startGameBtn);
-	characterMenuRoot->AddChild(availablePointsText);
-
-	characterMenuRoot->AddChild(strengthPointsText);
-	characterMenuRoot->AddChild(addStrengthBtn);
-	characterMenuRoot->AddChild(subtractStrengthBtn);
-
-	characterMenuRoot->AddChild(agilityPointsText);
-	characterMenuRoot->AddChild(addAgilityBtn);
-	characterMenuRoot->AddChild(subtractAgilityBtn);
-
-	characterMenuRoot->AddChild(witsPointsText);
-	characterMenuRoot->AddChild(addWitsBtn);
-	characterMenuRoot->AddChild(subtractWitsBtn);
-
-
-	characterMenuRoot->SetActive(false);
-
-	menuRoot->AddChild(CreateCharacterBtn);
-	menuRoot->AddChild(eraseDataBtn);
-	menuRoot->AddChild(quitBtn);
-
-
-	AddGameObject(characterMenuRoot);
-	AddGameObject(menuRoot);
-
-	//order matters: layers form from top to bottom
-	AddGameObject(menuBackground);
-	AddGameObject(CreateCharacterBtn);
-	AddGameObject(quitBtn);
-	AddGameObject(eraseDataBtn);
-
-	AddGameObject(background);
-	AddGameObject(cancelBtn);
-	AddGameObject(startGameBtn);
-
-	AddGameObject(availablePointsText);
-	AddGameObject(strengthPointsText);
-	AddGameObject(addStrengthBtn);
-	AddGameObject(subtractStrengthBtn);
-
-	AddGameObject(agilityPointsText);
-	AddGameObject(addAgilityBtn);
-	AddGameObject(subtractAgilityBtn);
-
-	AddGameObject(witsPointsText);
-	AddGameObject(addWitsBtn);
-	AddGameObject(subtractWitsBtn);
-
+	
 	availablePointsText->GetComponent<TextComponent>()->Font("../src/Arial.ttf");
 	availablePointsText->GetComponent<TextComponent>()->Text().setFillColor(sf::Color::Black);
 	availablePointsText->GetComponent<TextComponent>()->Text().
@@ -270,6 +204,17 @@ void MainMenu::SetupGameObjects()
 		});
 
 
+
+	//=======================main menu canvas====================================
+	Canvas* menuRoot = new Canvas("Main Menu");
+	GameObject* menuBackground = new GameObject("Main Menu Background");
+	Button* CreateCharacterBtn = new Button("Open Character Menu");
+	Button* quitBtn = new Button("Quit");
+	Button* eraseDataBtn = new Button("Erase Data");
+	menuBackground->AddComponent<SpriteComponent>()->Sprite("../src/menu_background.png");
+	menuBackground->GetComponent<SpriteComponent>()->Sprite().setTextureRect(sf::IntRect(0, 0, windowSize.x, windowSize.y));
+
+
 	CreateCharacterBtn->Sprite("../src/button.png");
 	CreateCharacterBtn->Text().setFillColor(sf::Color::White);
 	CreateCharacterBtn->Text().setString("Create Character");
@@ -316,6 +261,58 @@ void MainMenu::SetupGameObjects()
 		{
 			ServiceLocator::Instance()->GetService<Game>()->Exit();
 		});
+
+
+	characterMenuRoot->AddChild(background);
+	characterMenuRoot->AddChild(cancelBtn);
+	characterMenuRoot->AddChild(startGameBtn);
+	characterMenuRoot->AddChild(availablePointsText);
+
+	characterMenuRoot->AddChild(strengthPointsText);
+	characterMenuRoot->AddChild(addStrengthBtn);
+	characterMenuRoot->AddChild(subtractStrengthBtn);
+
+	characterMenuRoot->AddChild(agilityPointsText);
+	characterMenuRoot->AddChild(addAgilityBtn);
+	characterMenuRoot->AddChild(subtractAgilityBtn);
+
+	characterMenuRoot->AddChild(witsPointsText);
+	characterMenuRoot->AddChild(addWitsBtn);
+	characterMenuRoot->AddChild(subtractWitsBtn);
+
+
+	characterMenuRoot->SetActive(false);
+
+	menuRoot->AddChild(CreateCharacterBtn);
+	menuRoot->AddChild(eraseDataBtn);
+	menuRoot->AddChild(quitBtn);
+
+
+	AddGameObject(characterMenuRoot);
+	AddGameObject(menuRoot);
+
+	//order matters: layers form from top to bottom
+	AddGameObject(menuBackground);
+	AddGameObject(CreateCharacterBtn);
+	AddGameObject(quitBtn);
+	AddGameObject(eraseDataBtn);
+
+	AddGameObject(background);
+	AddGameObject(cancelBtn);
+	AddGameObject(startGameBtn);
+
+	AddGameObject(availablePointsText);
+	AddGameObject(strengthPointsText);
+	AddGameObject(addStrengthBtn);
+	AddGameObject(subtractStrengthBtn);
+
+	AddGameObject(agilityPointsText);
+	AddGameObject(addAgilityBtn);
+	AddGameObject(subtractAgilityBtn);
+
+	AddGameObject(witsPointsText);
+	AddGameObject(addWitsBtn);
+	AddGameObject(subtractWitsBtn);
 
 
 

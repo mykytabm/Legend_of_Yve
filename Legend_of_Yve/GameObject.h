@@ -5,59 +5,53 @@
 #include <SFML/Graphics.hpp>
 #include "Component.h"
 
-
 class RenderManager;
 class GameLoop;
 class GameObject
-{
 
-public:
-	void StartComponents();
+{
 protected:
-	bool _active = true;
-	bool _persistant = false;
+
 	std::vector<Component*> _components;
 	std::vector<GameObject*> _children;
-	std::string _name;
 	sf::Vector2f _position = sf::Vector2f(0, 0);
+	std::string _name = "";
+
+	bool _active = true;
+	bool _persistant = false;
 	GameObject() { };
 
 public:
+
 	GameObject(const std::string t_name);
+
 	virtual ~GameObject();
 	virtual void Start();
 	virtual void Update();
+
 	bool Active() const { return _active; };
-	void SetActive(bool value);
 	std::vector<Component*> Components() { return _components; };
-	std::string GetName() const { return  _name; };
-	sf::Vector2f& GetPosition() { return _position; };
+	std::string Name() const { return  _name; };
+	sf::Vector2f& Position() { return _position; };
+	bool DoNotDestroyOnLoad() const;
 
-
+	void SetActive(bool value);
+	void StartComponents();
 	void SetPosition(const sf::Vector2f t_newPosition);
-
-	void DoNotDestroyOnLoad(bool value) { _persistant = value; };
-	bool DoNotDestroyOnLoad() { return _persistant; };
-
+	void DoNotDestroyOnLoad(const bool value);
 	void AddChild(GameObject* t_child);
-	void AddComponent(Component* t_component);
 	void Register(GameLoop& t_gameLoop, RenderManager& t_renderManager);
 	void DeRegister(GameLoop& t_gameLoop, RenderManager& t_renderManager);
+	void AddComponent(Component* t_component);
 	bool ContainsComponent(Component* t_component) const;
 
-	template <typename T>
-	T* GetComponent();
-
-	template<typename T>
-	bool ContainsComponent() const;
-
-	template <typename T>
-	T* AddComponent();
+	template <typename T> T* GetComponent();
+	template<typename T> bool ContainsComponent() const;
+	template <typename T> T* AddComponent();
 };
 
 
-template<typename T>
-T* GameObject::GetComponent()
+template<typename T> T* GameObject::GetComponent()
 {
 	for (int i = 0; i < _components.size(); ++i)
 	{
@@ -70,8 +64,7 @@ T* GameObject::GetComponent()
 	return nullptr;
 }
 
-template<typename T>
-bool GameObject::ContainsComponent() const
+template<typename T> bool GameObject::ContainsComponent() const
 {
 	for (auto component : _components)
 	{
@@ -83,8 +76,7 @@ bool GameObject::ContainsComponent() const
 	return false;
 }
 
-template<typename T>
-T* GameObject::AddComponent()
+template<typename T> T* GameObject::AddComponent()
 {
 	auto* component = new T();
 	if (!ContainsComponent<T>())

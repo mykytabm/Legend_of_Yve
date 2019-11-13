@@ -11,16 +11,17 @@ private:
 	bool _CenterAllignment = true;
 
 public:
-	void Sprite(std::string t_imagePath) { _texture.loadFromFile(t_imagePath); _sprite.setTexture(_texture); };
-	sf::Sprite& Sprite() { return _sprite; };
-	void Start() override;
-	void Update() override;
-	sf::Vector2f Position() const { return _sprite.getPosition(); };
-	void SetPosition(sf::Vector2f t_newPosition) { _sprite.setPosition(t_newPosition); };
-	void SetPosition(sf::Vector2f* t_newPosition) { _sprite.setPosition(*t_newPosition); };
 	SpriteComponent();
 	~SpriteComponent();
 
+	sf::Sprite& Sprite();
+	sf::Vector2f Position() const;
+
+	void Sprite(std::string t_imagePath);
+	void Start() override;
+	void Update() override;
+	void SetPosition(const sf::Vector2f t_newPosition);
+	void SetPosition(sf::Vector2f* t_newPosition);
 	void Render(sf::RenderWindow& t_window) const override;
 };
 

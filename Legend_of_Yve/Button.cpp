@@ -50,6 +50,25 @@ Button::~Button()
 {
 }
 
+void Button::SetClickListener(OnClickListener onClickCallBack)
+{
+	onClick = onClickCallBack;
+}
+
+void Button::Sprite(const std::string t_imagePath)
+{
+	_spriteComponent.Sprite(t_imagePath);
+}
+
+sf::Sprite& Button::Sprite()
+{
+	return _spriteComponent.Sprite();
+}
+sf::Text& Button::Text()
+{
+	return _textComponent.Text();
+}
+
 void Button::Start()
 {
 	_spriteComponent.SetPosition(&_position);

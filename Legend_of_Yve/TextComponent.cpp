@@ -12,9 +12,14 @@ TextComponent::TextComponent()
 TextComponent::~TextComponent()
 { }
 
-void TextComponent::Font(std::string file)
+void TextComponent::Font(const std::string file)
 {
 	_font.loadFromFile(file);
+}
+
+sf::Text& TextComponent::Text()
+{
+	return _text;
 }
 
 void TextComponent::Start()

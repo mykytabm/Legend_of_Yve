@@ -7,26 +7,29 @@
 
 class Button : public UIElement
 {
+
 private:
-	bool _pressed = false;
 	SpriteComponent _spriteComponent;
 	TextComponent _textComponent;
 	Collider _collider;
 
+	bool _pressed = false;
 
 	bool MouseClick(int button);
+
 	typedef std::function<void()> OnClickListener;
 	OnClickListener onClick;
 
 
 public:
-	void SetClickListener(OnClickListener onClickCallBack) { onClick = onClickCallBack; };
-
-	void Sprite(const std::string t_imagePath) { _spriteComponent.Sprite(t_imagePath); };
-	sf::Sprite& Sprite() { return _spriteComponent.Sprite(); };
-	sf::Text& Text() { return _textComponent.Text(); };
 	Button(std::string t_name);
 	~Button();
+
+	sf::Sprite& Sprite();
+	sf::Text& Text();
+
+	void SetClickListener(OnClickListener onClickCallBack);
+	void Sprite(const std::string t_imagePath);
 	void Start() override;
 	void Update() override;
 };

@@ -12,29 +12,24 @@ class ServiceLocator
 {
 
 private:
-	ServiceLocator();
-
-	~ServiceLocator();
-
 	static ServiceLocator* _instance;
 	std::vector<Service*> _services;
+
+	ServiceLocator();
+	~ServiceLocator();
+
 
 
 
 public:
 	static ServiceLocator* Instance();
-	template<typename T>
-	void AddService(T& t_service);
-	template<typename T>
-	T* GetService();
-	template<typename T>
-	T* FindService();
 
-
+	template<typename T> void AddService(T& t_service);
+	template<typename T> T* GetService();
+	template<typename T> T* FindService();
 };
 
-template<typename T>
-void ServiceLocator::AddService(T& t_service)
+template<typename T> void ServiceLocator::AddService(T& t_service)
 {
 	_services.push_back(dynamic_cast<Service*>(&t_service));
 }
@@ -42,18 +37,14 @@ void ServiceLocator::AddService(T& t_service)
 
 
 
-template<typename T>
-T* ServiceLocator::GetService()
+template<typename T> T* ServiceLocator::GetService()
 {
 	T* service = FindService<T>();
 	return service;
-
 }
 
-template<typename T>
-T* ServiceLocator::FindService()
+template<typename T> T* ServiceLocator::FindService()
 {
-
 	for (int i = 0; i < _services.size(); ++i)
 	{
 		T* cast_service = dynamic_cast<T*>(_services[i]);

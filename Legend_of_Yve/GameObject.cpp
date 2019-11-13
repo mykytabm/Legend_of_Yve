@@ -39,8 +39,18 @@ void GameObject::SetPosition(const sf::Vector2f t_newPosition)
 	this->_position = t_newPosition;
 	for (auto child : _children)
 	{
-		child->SetPosition((child->GetPosition()) + t_newPosition);
+		child->SetPosition((child->Position()) + t_newPosition);
 	}
+}
+
+void GameObject::DoNotDestroyOnLoad(const bool value)
+{
+	_persistant = value;
+}
+
+bool GameObject::DoNotDestroyOnLoad() const
+{
+	return _persistant;
 }
 
 void GameObject::AddChild(GameObject* t_child)

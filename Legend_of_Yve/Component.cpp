@@ -2,6 +2,16 @@
 #include "GameLoop.h"
 #include <iostream>
 
+void Component::SetGameObject(GameObject* t_gameObject)
+{
+	_owner = t_gameObject;
+}
+
+bool Component::Active() const
+{
+	return _active;
+}
+
 void Component::SetActive(bool value)
 {
 	_active = value;

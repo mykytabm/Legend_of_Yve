@@ -27,6 +27,11 @@ Game::~Game()
 
 }
 
+bool& Game::GameRunning()
+{
+	return _gameRunning;
+}
+
 void Game::ProcessEvents()
 {
 	sf::Event event;

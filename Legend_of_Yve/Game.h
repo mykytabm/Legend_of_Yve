@@ -8,25 +8,23 @@
 class Game : public Service
 {
 private:
-
+	sf::RenderWindow _gameWindow;
+	RenderManager _renderManager;
 	SceneManager _sceneManager;
 	GameLoop _gameLoop;
-	RenderManager _renderManager;
-	void InitializeServices();
 	bool _gameRunning;
-
-	sf::RenderWindow _gameWindow;
+	void InitializeServices();
 
 public:
-	sf::RenderWindow& Window() { return _gameWindow; };
 	Game();
 	~Game();
-	bool& GameRunning() { return _gameRunning; };
+
+	sf::RenderWindow& Window() { return _gameWindow; }
+	bool& GameRunning();
+
 	void ProcessEvents();
+	void Initialize(std::list<Scene*> t_scenes);
 	void Run();
 	void Exit();
-
-	// Inherited via Service
-	void Initialize(std::list<Scene*> t_scenes);
 };
 

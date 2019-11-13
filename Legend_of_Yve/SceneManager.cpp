@@ -58,7 +58,17 @@ void SceneManager::AddScene(Scene* t_scene)
 	}
 }
 
-bool SceneManager::ContainsScene(Scene* t_scene)
+void SceneManager::SetScenes(std::list<Scene*> t_scenes)
+{
+	_scenes = t_scenes;
+}
+
+Scene* SceneManager::CurrentScene()
+{
+	return _currentScene;
+}
+
+bool SceneManager::ContainsScene(Scene* t_scene) const
 {
 	for (auto& s : _scenes)
 	{
@@ -67,7 +77,7 @@ bool SceneManager::ContainsScene(Scene* t_scene)
 	return false;
 }
 
-Scene* SceneManager::GetSceneByName(std::string t_sceneName)
+Scene* SceneManager::GetSceneByName(const std::string t_sceneName)
 {
 	for (auto& iter : _scenes)
 	{

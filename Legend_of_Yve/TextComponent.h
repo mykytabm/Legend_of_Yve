@@ -12,11 +12,12 @@ private:
 public:
 	TextComponent();
 	~TextComponent();
-	void Font(std::string file);
-	sf::Text& Text() { return _text; };
+
+	void Font(const std::string file);
+	sf::Text& Text();
 	void Start() override;
 	void Update() override;
-
 	void Render(sf::RenderWindow& t_window) const override;
+
 };
 
