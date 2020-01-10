@@ -12,13 +12,17 @@ void GameLoop::Update()
 	for (auto gameObject : _gameObjects)
 	{
 		if (gameObject->Active())
+		{
 			gameObject->Update();
+		}
 	}
 
 	for (auto component : _components)
 	{
 		if (component->Active())
+		{
 			component->Update();
+		}
 	}
 }
 
@@ -38,7 +42,6 @@ void GameLoop::Run(bool& t_gameRunning, Game& t_game, RenderManager& t_renderMan
 		this->Update();
 		t_renderManager.Render();
 	}
-
 }
 
 void GameLoop::Register(Component* t_component)

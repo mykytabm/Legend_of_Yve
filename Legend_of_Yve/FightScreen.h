@@ -8,9 +8,9 @@ private:
 	//Unit _player;
 	//Unit _enemy;
 public:
-	FightScreen(int str, int agi, int wit);
-
-	
+	FightScreen();
+	FightScreen(const std::string t_id);
+	~FightScreen();
 	// Inherited via Scene
 	virtual void SetupGameObjects() override;
 };

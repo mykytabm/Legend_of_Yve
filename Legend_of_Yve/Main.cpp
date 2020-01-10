@@ -1,23 +1,19 @@
-#include <SFML/Graphics.hpp>
+#include <list>
 #include "Game.h"
 #include "StartScreen.h"
+#include "FightScreen.h"
 #include "MainMenu.h"
-#include "Scene.h"
-#include <list>
 int main()
 {
 	Game game;
 
+	MainMenu menu("Main Menu");
+	FightScreen fightScreen("Fight Screen");
 
-
-	MainMenu menu("MainMenu");
-
-
-	std::list<Scene*> yveGameScenes = { &menu };
+	std::list<Scene*> yveGameScenes = { &menu,&fightScreen };
 	game.Initialize(yveGameScenes);
 	game.Run();
 	game.Exit();
-
 
 	return 0;
 }

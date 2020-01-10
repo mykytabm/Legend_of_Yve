@@ -51,7 +51,6 @@ void MainMenu::SetupGameObjects()
 	Button* subtractAgilityBtn = new Button("Subtract Agility");
 	Button* subtractWitsBtn = new Button("Subtract Wits");
 
-	
 	availablePointsText->GetComponent<TextComponent>()->Font("../src/Arial.ttf");
 	availablePointsText->GetComponent<TextComponent>()->Text().setFillColor(sf::Color::Black);
 	availablePointsText->GetComponent<TextComponent>()->Text().
@@ -200,7 +199,7 @@ void MainMenu::SetupGameObjects()
 
 	startGameBtn->SetClickListener([this]()->void
 		{
-
+			ServiceLocator::Instance()->GetService<SceneManager>()->LoadScene("Fight Screen");
 		});
 
 
